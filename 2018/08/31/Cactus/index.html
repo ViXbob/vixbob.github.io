@@ -89,7 +89,7 @@
 <meta property="og:image" content="https://www.lydsy.com/JudgeOnline/images/1023/1.jpg">
 <meta property="og:image" content="https://images2015.cnblogs.com/blog/795615/201606/795615-20160617203805213-96421613.jpg">
 <meta property="og:image" content="https://images.cnblogs.com/cnblogs_com/cjyyb/1223342/o_qwq.png">
-<meta property="og:updated_time" content="2018-09-01T09:09:32.319Z">
+<meta property="og:updated_time" content="2018-09-01T14:25:29.515Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浅谈仙人掌和圆方树">
 <meta name="twitter:image" content="http://r.photo.store.qq.com/psb?/V12wIROa0MTsCi/ZayFJrhxuRv.oNtLHKJRQkdvQ2g0.gm6rjKZHOdZvjM!/r/dDQBAAAAAAAA">
@@ -189,6 +189,16 @@
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
           </a>
         </li>
       
@@ -344,9 +354,10 @@
 </li>
 </ul>
 <h2 id="5-利用圆方树和仙人掌解决问题"><a href="#5-利用圆方树和仙人掌解决问题" class="headerlink" title="5.利用圆方树和仙人掌解决问题"></a>5.利用圆方树和仙人掌解决问题</h2><h4 id="BZOJ4316小C的独立集"><a href="#BZOJ4316小C的独立集" class="headerlink" title="BZOJ4316小C的独立集"></a><a href="https://www.lydsy.com/JudgeOnline/problem.php?id=4316" target="_blank" rel="noopener">BZOJ4316小C的独立集</a></h4><p>题面 : 求一颗仙人掌上的最大独立集</p>
-<p>题解 : 我们先考虑如果在一棵树上应该怎么做 , 考虑状态$f[i][0/1]$表示这个点选或不选时以这个点为根的子树中的最大独立集是多少 , 那么转移就是 :<br>$$<br>f[i][0] = \sum_{v \in son[i]}^{v} max(f[v][0], f[v][1])\<br>f[i][1] = \sum_{v \in son[i]}^{v} f[v][0]<br>$$<br>我们再考虑环上如何转移 , 我们把这个环上深度最小的点称作这个环的根 , 我们还是考虑这个环的根选还是不选 , 然后我们把环展开 , 如果选择根节点的话 , 它两侧的点都是不能选的 , 否则就无所谓 , 然后剩下的就按树上的做法来搞就好了 , 所以转移就是 :<br>$$<br>g[i][0] = max(g[i - 1][0], g[i - 1][1]) + f[id[i]][0]\<br>g[i][1] = g[i - 1][0] + f[id[i]][1]<br>$$<br>最后的答案就是$max(f[root][0], f[root][1])$ , 这道题就这么愉悦的水过辣</p>
+<p>题解 : 我们先考虑如果在一棵树上应该怎么做 , 考虑状态$f[i][0/1]$表示这个点选或不选时以这个点为根的子树中的最大独立集是多少 , 那么转移就是 :<br>$$<br>f[i][0] = \sum_{v \in son[i]}^{v} max(f[v][0], f[v][1])\<br>f[i][1] = \sum_{v \in son[i]}^{v} f[v][0]<br>$$<br>我们再考虑环上如何转移 , 我们把这个环上深度最小的点称作这个环的根 , 我们还是考虑这个环的根选还是不选 , 然后我们把环展开 , 如果选择根节点的话 , 它两侧的点都是不能选的 , 否则就无所谓 , 然后剩下的就按树上的做法来搞就好了 , 所以转移就是 :<br>$$<br>g[i][0] = max(g[i - 1][0], g[i - 1][1]) + f[id[i]][0]<br>$$<br>$$<br>g[i][1] = g[i - 1][0] + f[id[i]][1]<br>$$</p>
+<p>最后的答案就是$max(f[root][0], f[root][1])$ , 这道题就这么愉悦的水过辣</p>
 <h4 id="BZOJ1023cactus仙人掌图"><a href="#BZOJ1023cactus仙人掌图" class="headerlink" title="BZOJ1023cactus仙人掌图"></a><a href="https://www.lydsy.com/JudgeOnline/problem.php?id=1023" target="_blank" rel="noopener">BZOJ1023cactus仙人掌图</a></h4><p>题目大意 : 给你一颗仙人掌 , 求仙人掌上的两点之间最短路的最大值 , 就是仙人掌的直径</p>
-<p>题解 : 我们先考虑在树上怎么做 , 我们考虑状态$f[i]$表示在以这个点为根的子树当中, 经过$i$这个点的最长链的长度, 转移很显然, 就是:<br>$$<br>f[i] = max{f[v] + w_{i,v}, v \in son[i]}<br>$$<br>然后我们就在转移的过程中更新一下答案就好了</p>
+<p>题解 : 我们先考虑在树上怎么做 , 我们考虑状态$f[i]$表示在以这个点为根的子树当中, 经过$i$这个点的最长链的长度, 转移很显然, 就是:<br>$$<br>f[i] = max{ f[v] + w_{i,v}, v \in son[i] }<br>$$<br>然后我们就在转移的过程中更新一下答案就好了</p>
 <p>然后还是一样的思路我们把环单独拎出来搞一下, 但是怎么弄呢, 发现不好在环上直接$dp$, 因为环上的最短距离是不确定的, 我们考虑把环拆成链, 直接在链上$dp$, 但是如果直接转移的话是$n^2$的, 式子是这样的:<br>$$<br>ans = max(ans, max{f[r] + f[l] + r - l, r - l &lt; \frac{len}{2}})<br>$$<br>然后我们观察发现如果固定左端点, 新加入一个右端点我们可以将一些没有当前优的右端点给弹掉, 这个东西是可以用单调队列$O(n)$维护的, 具体的 : </p>
 <ul>
 <li>如果当前队尾和队头的插值超过环的长度的二分之一, 弹掉队头, 直到符合条件为止</li>
