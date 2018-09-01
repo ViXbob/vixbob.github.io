@@ -89,7 +89,7 @@
 <meta property="og:image" content="https://www.lydsy.com/JudgeOnline/images/1023/1.jpg">
 <meta property="og:image" content="https://images2015.cnblogs.com/blog/795615/201606/795615-20160617203805213-96421613.jpg">
 <meta property="og:image" content="https://images.cnblogs.com/cnblogs_com/cjyyb/1223342/o_qwq.png">
-<meta property="og:updated_time" content="2018-09-01T09:06:56.086Z">
+<meta property="og:updated_time" content="2018-09-01T09:09:32.319Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浅谈仙人掌和圆方树">
 <meta name="twitter:image" content="http://r.photo.store.qq.com/psb?/V12wIROa0MTsCi/ZayFJrhxuRv.oNtLHKJRQkdvQ2g0.gm6rjKZHOdZvjM!/r/dDQBAAAAAAAA">
@@ -326,7 +326,7 @@
 </ul>
 <p>理论证明</p>
 <ul>
-<li>原图中的换的个数为$|E| - |V| + 1$, 则 $|V_T| = |S_T| + |R_T| = |V| + |E| - |V| + 1 = |E| + 1, |E_T| = |E|$ <strong>(大小为</strong>$\textbf{r}$<strong>的环在仙人掌和圆方树中都是</strong>$\textbf{r}$<strong>条边)</strong>, 因此满足$|V_T| = |E_T| + 1$ </li>
+<li>原图中的环的个数为 $|E| - |V| + 1$ ,  则 $|V_T| = |S_T| + |R_T| = |V| + |E| - |V| + 1 = |E| + 1, |E_T| = |E|$ <strong>(大小为</strong>$\textbf{r}$<strong>的环在仙人掌和圆方树中都是</strong>$\textbf{r}$<strong>条边)</strong> , 因此满足$|V_T| = |E_T| + 1$ </li>
 </ul>
 <h2 id="3-如何构造圆方树"><a href="#3-如何构造圆方树" class="headerlink" title="3.如何构造圆方树"></a>3.如何构造圆方树</h2><p>我们直接从任意一个点开始进行$Tarjan$ 求点双联通分量 , 然后对于每一个点双联通分量建立一个方点 , 然后连边向这个点双联通分量里的每一个点连边, 最后处理没有连边的圆圆点对  </p>
 <p>$PS$ : 个人建议通过并查集维护一下连通性在判断是否需要将原图中的边加入进来 , 而且这样可以避免重边带来的一些奇奇怪怪的$bug$</p>
@@ -334,7 +334,7 @@
 <p><img src="https://images.cnblogs.com/cnblogs_com/cjyyb/1223342/o_qwq.png" alt=""></p>
 <p>虚边是原图上的边 , 实边是新建立的圆方树上的边 , 有一些虚边和实边重和的请况可以按照上述并查集的方法来维护</p>
 <h2 id="4-圆方树的性质"><a href="#4-圆方树的性质" class="headerlink" title="4.圆方树的性质"></a>4.圆方树的性质</h2><ul>
-<li>$\large{\forall} {(x, y)} \large\in E_T, {x, y} \large\cap R_T \ne \O$  ,  通俗点说就是两个方点一定不会相连</li>
+<li>$\large{\forall} {(x, y)} \large\in E_T, {x, y} \large\cap R_T \ne \varnothing$  ,  通俗点说就是两个方点一定不会相连</li>
 <li><p>在构造的过程中无论取什么点为根 , 构造出的圆方树都是一样的(在形态上) , 因此圆方树是无根树<br>定义 : 子仙人掌</p>
 <blockquote>
 <p>以$\textbf{r}$为根的仙人掌上的点$\textbf{p}$的子仙人掌是从仙人掌中去掉$\textbf{p}$到$\textbf{r}$的简单路径上的所有边之后 , $\textbf{p}$所在的联通块</p>
