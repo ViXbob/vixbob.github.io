@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="仙人掌,图论,圆方树," />
+
+
+
+
+
+
+
+
+
+
+<meta name="keywords" content="仙人掌,图论,圆方树">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浅谈仙人掌和圆方树">
+<meta property="og:url" content="http://yoursite.com/2018/08/31/Cactus/index.html">
+<meta property="og:site_name" content="ViXbob">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://r.photo.store.qq.com/psb?/V12wIROa0MTsCi/ZayFJrhxuRv.oNtLHKJRQkdvQ2g0.gm6rjKZHOdZvjM!/r/dDQBAAAAAAAA">
+<meta property="og:image" content="https://www.lydsy.com/JudgeOnline/images/1023/1.jpg">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/795615/201606/795615-20160617203805213-96421613.jpg">
+<meta property="og:image" content="https://images.cnblogs.com/cnblogs_com/cjyyb/1223342/o_qwq.png">
+<meta property="og:updated_time" content="2018-09-01T09:06:56.086Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="浅谈仙人掌和圆方树">
+<meta name="twitter:image" content="http://r.photo.store.qq.com/psb?/V12wIROa0MTsCi/ZayFJrhxuRv.oNtLHKJRQkdvQ2g0.gm6rjKZHOdZvjM!/r/dDQBAAAAAAAA">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/08/31/Cactus/"/>
+
+
+
+
+
+  <title>浅谈仙人掌和圆方树 | ViXbob</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ViXbob</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/31/Cactus/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ViXbob">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ViXbob">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">浅谈仙人掌和圆方树</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-31T15:36:28+08:00">
+                2018-08-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="http://r.photo.store.qq.com/psb?/V12wIROa0MTsCi/ZayFJrhxuRv.oNtLHKJRQkdvQ2g0.gm6rjKZHOdZvjM!/r/dDQBAAAAAAAA" alt=""><br><a id="more"></a></p>
+<h2 id="1-什么是仙人掌"><a href="#1-什么是仙人掌" class="headerlink" title="1.什么是仙人掌"></a>1.什么是仙人掌</h2><p>给你一张无向图，一条边最多只在一个简单环当中的图被称之为仙人掌，例如：</p>
+<p><img src="https://www.lydsy.com/JudgeOnline/images/1023/1.jpg" alt=""></p>
+<p><strong>(图片出自BZOJ1023)</strong></p>
+<p>又或者这样</p>
+<p><img src="https://images2015.cnblogs.com/blog/795615/201606/795615-20160617203805213-96421613.jpg" alt=""></p>
+<p><strong>(图片源于网络)</strong></p>
+<h2 id="2-什么是圆方树"><a href="#2-什么是圆方树" class="headerlink" title="2.什么是圆方树"></a>2.什么是圆方树</h2><p>仙人掌$G = (V, E)$ 的圆方树 $T = (V_T,E_T)$ 为满足以下条件的无向图：</p>
+<ul>
+<li><p>$V_T = R_T \bigcup S_T, R_T = V , R_T \bigcap S_T \ne ∅$ , 我们称 $R_T$ 集合为圆点, $S_T$ 集合为方点</p>
+</li>
+<li><p>$\large{\forall}  {e}  \large\in  E$ , 若 $e$ 不在任何简单环中, 则$e \large\in E_T$ </p>
+</li>
+<li><p>对于每个仙人掌的简单环$R$ ,存在方点$P_R \large\in S_T$ , 并且 $\large{\forall} {p} \large\in R$ 满足$(P_R, P) \large\in E_T$ , 即对每个环建立一个方点并连向这个环里的所有点</p>
+</li>
+</ul>
+<p>通俗一点的说 : 就是对于每个简单环都额外建一个方点 , 然后将每个圆点向方点连一条边 ,  最后再将不连通的圆点连上原本有的边 , 就构成了圆方树</p>
+<p>以下是对于圆方树正确性的证明：</p>
+<p>感性证明</p>
+<ul>
+<li>不在环上的点和边不会改变其树的性质, 而每个在环上的点都会连向方点, 形成一个菊花图, 所以这一定是一颗树</li>
+</ul>
+<p>理论证明</p>
+<ul>
+<li>原图中的换的个数为$|E| - |V| + 1$, 则 $|V_T| = |S_T| + |R_T| = |V| + |E| - |V| + 1 = |E| + 1, |E_T| = |E|$ <strong>(大小为</strong>$\textbf{r}$<strong>的环在仙人掌和圆方树中都是</strong>$\textbf{r}$<strong>条边)</strong>, 因此满足$|V_T| = |E_T| + 1$ </li>
+</ul>
+<h2 id="3-如何构造圆方树"><a href="#3-如何构造圆方树" class="headerlink" title="3.如何构造圆方树"></a>3.如何构造圆方树</h2><p>我们直接从任意一个点开始进行$Tarjan$ 求点双联通分量 , 然后对于每一个点双联通分量建立一个方点 , 然后连边向这个点双联通分量里的每一个点连边, 最后处理没有连边的圆圆点对  </p>
+<p>$PS$ : 个人建议通过并查集维护一下连通性在判断是否需要将原图中的边加入进来 , 而且这样可以避免重边带来的一些奇奇怪怪的$bug$</p>
+<p>如图 : </p>
+<p><img src="https://images.cnblogs.com/cnblogs_com/cjyyb/1223342/o_qwq.png" alt=""></p>
+<p>虚边是原图上的边 , 实边是新建立的圆方树上的边 , 有一些虚边和实边重和的请况可以按照上述并查集的方法来维护</p>
+<h2 id="4-圆方树的性质"><a href="#4-圆方树的性质" class="headerlink" title="4.圆方树的性质"></a>4.圆方树的性质</h2><ul>
+<li>$\large{\forall} {(x, y)} \large\in E_T, {x, y} \large\cap R_T \ne \O$  ,  通俗点说就是两个方点一定不会相连</li>
+<li><p>在构造的过程中无论取什么点为根 , 构造出的圆方树都是一样的(在形态上) , 因此圆方树是无根树<br>定义 : 子仙人掌</p>
+<blockquote>
+<p>以$\textbf{r}$为根的仙人掌上的点$\textbf{p}$的子仙人掌是从仙人掌中去掉$\textbf{p}$到$\textbf{r}$的简单路径上的所有边之后 , $\textbf{p}$所在的联通块</p>
+</blockquote>
+</li>
+<li><p>以$\textbf{r}$为根的仙人掌中 , 点$\textbf{p}$的子仙人掌就是圆方树以$\textbf{r}$为根时点$\textbf{p}$的子树中的所有圆点所构成的图</p>
+</li>
+</ul>
+<h2 id="5-利用圆方树和仙人掌解决问题"><a href="#5-利用圆方树和仙人掌解决问题" class="headerlink" title="5.利用圆方树和仙人掌解决问题"></a>5.利用圆方树和仙人掌解决问题</h2><h4 id="BZOJ4316小C的独立集"><a href="#BZOJ4316小C的独立集" class="headerlink" title="BZOJ4316小C的独立集"></a><a href="https://www.lydsy.com/JudgeOnline/problem.php?id=4316" target="_blank" rel="noopener">BZOJ4316小C的独立集</a></h4><p>题面 : 求一颗仙人掌上的最大独立集</p>
+<p>题解 : 我们先考虑如果在一棵树上应该怎么做 , 考虑状态$f[i][0/1]$表示这个点选或不选时以这个点为根的子树中的最大独立集是多少 , 那么转移就是 :<br>$$<br>f[i][0] = \sum_{v \in son[i]}^{v} max(f[v][0], f[v][1])\<br>f[i][1] = \sum_{v \in son[i]}^{v} f[v][0]<br>$$<br>我们再考虑环上如何转移 , 我们把这个环上深度最小的点称作这个环的根 , 我们还是考虑这个环的根选还是不选 , 然后我们把环展开 , 如果选择根节点的话 , 它两侧的点都是不能选的 , 否则就无所谓 , 然后剩下的就按树上的做法来搞就好了 , 所以转移就是 :<br>$$<br>g[i][0] = max(g[i - 1][0], g[i - 1][1]) + f[id[i]][0]\<br>g[i][1] = g[i - 1][0] + f[id[i]][1]<br>$$<br>最后的答案就是$max(f[root][0], f[root][1])$ , 这道题就这么愉悦的水过辣</p>
+<h4 id="BZOJ1023cactus仙人掌图"><a href="#BZOJ1023cactus仙人掌图" class="headerlink" title="BZOJ1023cactus仙人掌图"></a><a href="https://www.lydsy.com/JudgeOnline/problem.php?id=1023" target="_blank" rel="noopener">BZOJ1023cactus仙人掌图</a></h4><p>题目大意 : 给你一颗仙人掌 , 求仙人掌上的两点之间最短路的最大值 , 就是仙人掌的直径</p>
+<p>题解 : 我们先考虑在树上怎么做 , 我们考虑状态$f[i]$表示在以这个点为根的子树当中, 经过$i$这个点的最长链的长度, 转移很显然, 就是:<br>$$<br>f[i] = max{f[v] + w_{i,v}, v \in son[i]}<br>$$<br>然后我们就在转移的过程中更新一下答案就好了</p>
+<p>然后还是一样的思路我们把环单独拎出来搞一下, 但是怎么弄呢, 发现不好在环上直接$dp$, 因为环上的最短距离是不确定的, 我们考虑把环拆成链, 直接在链上$dp$, 但是如果直接转移的话是$n^2$的, 式子是这样的:<br>$$<br>ans = max(ans, max{f[r] + f[l] + r - l, r - l &lt; \frac{len}{2}})<br>$$<br>然后我们观察发现如果固定左端点, 新加入一个右端点我们可以将一些没有当前优的右端点给弹掉, 这个东西是可以用单调队列$O(n)$维护的, 具体的 : </p>
+<ul>
+<li>如果当前队尾和队头的插值超过环的长度的二分之一, 弹掉队头, 直到符合条件为止</li>
+<li>如果$f[q[tail]] + q[tail] \leq f[i] + i$, 弹掉队尾, 直到符合条件为止</li>
+</ul>
+<p>然后就可以开心的$dp$辣</p>
+<h4 id="BZOJ2125最短路"><a href="#BZOJ2125最短路" class="headerlink" title="BZOJ2125最短路"></a><a href="https://www.lydsy.com/JudgeOnline/problem.php?id=2125" target="_blank" rel="noopener">BZOJ2125最短路</a></h4><p>题目大意 : 给你一颗仙人掌, 有$n$次询问, 每次询问两点之间的最短路, $n \leq 10^5$</p>
+<p>题解 : 对于上面的题, 我们可以不用建圆方树, 但是这道题我们考虑将圆方树建出来, 但是有一个问题, 我们怎么设定圆点到方点的边权, 这里有一个小技巧, 我们对于每一个环都建立一个根, 每个圆点到方点的边权就是这个圆点在其所在的环中到这个环的根的最短距离, 这样的话就可以保证从深度小的点向深度大的点遍历时, 是点与点之间的最短距离</p>
+<p>建完图以后, 对其进行倍增预处理, 和剖分, 对于每次查询$(u, v)$, 我们我们求一下$LCA(u, v)$ 如果$LCA(u, v)$是圆点那么就和普通的树上查询距离是一样的答案就是$dis[u] + dis[v] - dis[LCA(u, v)]$, 如果是方点的话, 就说明$u, v$的祖先是在一个环上的, 这种情况不能直接搞, 我们用倍增向上跳到方点下的那个两个点$fa_u, fa_v$, 让后求一下环上两点的最短距离$L$,那么最后的答案就是$dis[u] + dis[v] - dis[fa_u] - dis[fa_v] + L$</p>
+<h2 id="6-广义仙人掌"><a href="#6-广义仙人掌" class="headerlink" title="6.广义仙人掌"></a>6.广义仙人掌</h2><p>填坑中…..</p>
+<h2 id="7-Summary"><a href="#7-Summary" class="headerlink" title="7.Summary"></a>7.Summary</h2><p><del>水水水</del></p>
+<p><del>咕咕咕</del></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/仙人掌/" rel="tag"># 仙人掌</a>
+          
+            <a href="/tags/图论/" rel="tag"># 图论</a>
+          
+            <a href="/tags/圆方树/" rel="tag"># 圆方树</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/23/EducationalCodeforcesRound48 /" rel="next" title="EducationalCodeForcesRound48">
+                <i class="fa fa-chevron-left"></i> EducationalCodeForcesRound48
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">ViXbob</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-什么是仙人掌"><span class="nav-number">1.</span> <span class="nav-text">1.什么是仙人掌</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-什么是圆方树"><span class="nav-number">2.</span> <span class="nav-text">2.什么是圆方树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-如何构造圆方树"><span class="nav-number">3.</span> <span class="nav-text">3.如何构造圆方树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-圆方树的性质"><span class="nav-number">4.</span> <span class="nav-text">4.圆方树的性质</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-利用圆方树和仙人掌解决问题"><span class="nav-number">5.</span> <span class="nav-text">5.利用圆方树和仙人掌解决问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#BZOJ4316小C的独立集"><span class="nav-number">5.0.1.</span> <span class="nav-text">BZOJ4316小C的独立集</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#BZOJ1023cactus仙人掌图"><span class="nav-number">5.0.2.</span> <span class="nav-text">BZOJ1023cactus仙人掌图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#BZOJ2125最短路"><span class="nav-number">5.0.3.</span> <span class="nav-text">BZOJ2125最短路</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-广义仙人掌"><span class="nav-number">6.</span> <span class="nav-text">6.广义仙人掌</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-Summary"><span class="nav-number">7.</span> <span class="nav-text">7.Summary</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ViXbob</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+  <div class="footer-custom">Hosted by <a target="_blank" href="https://pages.coding.me">Coding Pages</a></div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
