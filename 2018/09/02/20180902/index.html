@@ -79,18 +79,17 @@
 
 
 
-<meta name="description" content="Streaming#5 题解报告 T1.珠 题目大意 : 给你一个长度为\(n\)的数字环, 你可顺时针或者逆时针选择一个子序列, 满足子序列的以\(2\)开头, 后面的数字都是\(3\), 求最长子序列 题解 : 我们考虑对于每一个数字为\(2\)的位置向左边和右边二分一个位置, 使得这个位置到数字\(2\)中间全是\(3\), 所以我们必须得先处理处两个数组\(preL, preR\), 表示">
 <meta name="keywords" content="二分,DP,组合数学,容斥原理">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Streaming#5模拟赛">
 <meta property="og:url" content="http://yoursite.com/2018/09/02/20180902/index.html">
 <meta property="og:site_name" content="ViXbob">
-<meta property="og:description" content="Streaming#5 题解报告 T1.珠 题目大意 : 给你一个长度为\(n\)的数字环, 你可顺时针或者逆时针选择一个子序列, 满足子序列的以\(2\)开头, 后面的数字都是\(3\), 求最长子序列 题解 : 我们考虑对于每一个数字为\(2\)的位置向左边和右边二分一个位置, 使得这个位置到数字\(2\)中间全是\(3\), 所以我们必须得先处理处两个数组\(preL, preR\), 表示">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-09-02T08:58:35.430Z">
+<meta property="og:image" content="http://r.photo.store.qq.com/psb?/V12wIROa0MTsCi/L4co5ovnhyPCGXuu9oqIMj3qHnqHD3cfmBs4X9z8fDc!/r/dPMAAAAAAAAA">
+<meta property="og:updated_time" content="2018-09-02T09:08:56.281Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Streaming#5模拟赛">
-<meta name="twitter:description" content="Streaming#5 题解报告 T1.珠 题目大意 : 给你一个长度为\(n\)的数字环, 你可顺时针或者逆时针选择一个子序列, 满足子序列的以\(2\)开头, 后面的数字都是\(3\), 求最长子序列 题解 : 我们考虑对于每一个数字为\(2\)的位置向左边和右边二分一个位置, 使得这个位置到数字\(2\)中间全是\(3\), 所以我们必须得先处理处两个数组\(preL, preR\), 表示">
+<meta name="twitter:image" content="http://r.photo.store.qq.com/psb?/V12wIROa0MTsCi/L4co5ovnhyPCGXuu9oqIMj3qHnqHD3cfmBs4X9z8fDc!/r/dPMAAAAAAAAA">
 
 
 
@@ -373,7 +372,8 @@
       
 
       
-        <h1 id="streaming5-题解报告"><a href="http://www.vixbob-lwc.pw/pdf/2018.9.2.pdf" target="_blank" rel="noopener">Streaming#5 题解报告</a></h1>
+        <p><img src="http://r.photo.store.qq.com/psb?/V12wIROa0MTsCi/L4co5ovnhyPCGXuu9oqIMj3qHnqHD3cfmBs4X9z8fDc!/r/dPMAAAAAAAAA"> <a id="more"></a></p>
+<h1 id="streaming5-题解报告"><a href="http://www.vixbob-lwc.pw/pdf/2018.9.2.pdf" target="_blank" rel="noopener">Streaming#5 题解报告</a></h1>
 <h2 id="t1.珠">T1.珠</h2>
 <p>题目大意 : 给你一个长度为<span class="math inline">\(n\)</span>的数字环, 你可顺时针或者逆时针选择一个子序列, 满足子序列的以<span class="math inline">\(2\)</span>开头, 后面的数字都是<span class="math inline">\(3\)</span>, 求最长子序列</p>
 <p>题解 : 我们考虑对于每一个数字为<span class="math inline">\(2\)</span>的位置向左边和右边二分一个位置, 使得这个位置到数字<span class="math inline">\(2\)</span>中间全是<span class="math inline">\(3\)</span>, 所以我们必须得先处理处两个数组<span class="math inline">\(preL, preR\)</span>, 表示从一个为<span class="math inline">\(3\)</span>的位置向左向右全部都是<span class="math inline">\(3\)</span>的结束位置, 这样就可以二分了, 特别的如果你向右边二分出的位置为这个序列的末尾, 那你必须从这个序列的开头再次二分一个位置, 因为这个是一个环, 头尾可以相接</p>
