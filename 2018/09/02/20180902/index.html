@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="二分,DP,组合数学,容斥原理," />
+  <meta name="keywords" content="DP,二分,组合数学,容斥原理," />
 
 
 
@@ -79,14 +79,14 @@
 
 
 
-<meta name="keywords" content="二分,DP,组合数学,容斥原理">
+<meta name="keywords" content="DP,二分,组合数学,容斥原理">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Streaming#5模拟赛">
 <meta property="og:url" content="http://yoursite.com/2018/09/02/20180902/index.html">
 <meta property="og:site_name" content="ViXbob">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://r.photo.store.qq.com/psb?/V12wIROa0MTsCi/L4co5ovnhyPCGXuu9oqIMj3qHnqHD3cfmBs4X9z8fDc!/r/dPMAAAAAAAAA">
-<meta property="og:updated_time" content="2018-09-02T09:08:56.281Z">
+<meta property="og:updated_time" content="2018-09-02T09:13:00.191Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Streaming#5模拟赛">
 <meta name="twitter:image" content="http://r.photo.store.qq.com/psb?/V12wIROa0MTsCi/L4co5ovnhyPCGXuu9oqIMj3qHnqHD3cfmBs4X9z8fDc!/r/dPMAAAAAAAAA">
@@ -427,9 +427,9 @@ f[i] = Paths(A, i) - \sum_{i \ne j} f[j] * Paths(j, i)
       
         <div class="post-tags">
           
-            <a href="/tags/二分/" rel="tag"># 二分</a>
-          
             <a href="/tags/DP/" rel="tag"># DP</a>
+          
+            <a href="/tags/二分/" rel="tag"># 二分</a>
           
             <a href="/tags/组合数学/" rel="tag"># 组合数学</a>
           
@@ -830,6 +830,26 @@ f[i] = Paths(A, i) - \sum_{i \ne j} f[j] * Paths(j, i)
   
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
   
 
 
