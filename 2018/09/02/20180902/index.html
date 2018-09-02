@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="DP,二分,组合数学,容斥原理," />
+  <meta name="keywords" content="二分,DP,组合数学,容斥原理," />
 
 
 
@@ -79,14 +79,14 @@
 
 
 
-<meta name="keywords" content="DP,二分,组合数学,容斥原理">
+<meta name="keywords" content="二分,DP,组合数学,容斥原理">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Streaming#5模拟赛">
 <meta property="og:url" content="http://yoursite.com/2018/09/02/20180902/index.html">
 <meta property="og:site_name" content="ViXbob">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://r.photo.store.qq.com/psb?/V12wIROa0MTsCi/L4co5ovnhyPCGXuu9oqIMj3qHnqHD3cfmBs4X9z8fDc!/r/dPMAAAAAAAAA">
-<meta property="og:updated_time" content="2018-09-02T09:13:00.191Z">
+<meta property="og:updated_time" content="2018-09-02T09:15:55.944Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Streaming#5模拟赛">
 <meta name="twitter:image" content="http://r.photo.store.qq.com/psb?/V12wIROa0MTsCi/L4co5ovnhyPCGXuu9oqIMj3qHnqHD3cfmBs4X9z8fDc!/r/dPMAAAAAAAAA">
@@ -393,7 +393,7 @@
 <h2 id="t3.高维网络">T3.高维网络</h2>
 <p>题目大意 : 现在有一个<span class="math inline">\(d\)</span>维空间, 起始坐标为<span class="math inline">\(A(0, 0, ...., 0)\)</span>, 结束坐标为<span class="math inline">\(B(a_1, a_2, ...., a_d)\)</span>, 现在有<span class="math inline">\(p\)</span>个坐标上设有障碍, 并且每一步只能在某一个维度上走一步, 也就是说只能这样转移 : <span class="math display">\[
 (0, 0, ...., 0) -&gt; (1, 0, ...., 0) or (0, 0,...., 0) -&gt; (0, 1, ...., 0)
-\]</span> 求从起点走到终点不经过障碍有多少种方案, 输出方案数对<span class="math inline">\(p\)</span>取余后的结果</p>
+\]</span> 求从起点走到终点不经过障碍有多少种方案, 输出方案数对<span class="math inline">\(P\)</span>取余后的结果</p>
 <p>题解 :</p>
 <p>我们先考虑没有障碍的情况, 从<span class="math inline">\(x(s_1, s_2, ...., s_d)\)</span>移动到<span class="math inline">\(y(t_1, t_2, ...., t_d)\)</span>有多少种方案, 首先我们设数组<span class="math inline">\(tmp_i = t_i - s_i\)</span>, 其后缀和为<span class="math inline">\(S\)</span>, 那么我们一定会走<span class="math inline">\(\sum_{i = 1}^{d}tmp_i\)</span>步, 前<span class="math inline">\(tmp_1\)</span>步我们可以任意分配就有<span class="math inline">\(C_{S_1}^{tmp_1}\)</span>种方案, 然后我们依次分配步数就可以知道方案数为 : <span class="math display">\[
 Paths(x, y) = \prod_{i = 1} ^ {i \leq d} C_{S_i}^{tmp_i}
@@ -427,9 +427,9 @@ f[i] = Paths(A, i) - \sum_{i \ne j} f[j] * Paths(j, i)
       
         <div class="post-tags">
           
-            <a href="/tags/DP/" rel="tag"># DP</a>
-          
             <a href="/tags/二分/" rel="tag"># 二分</a>
+          
+            <a href="/tags/DP/" rel="tag"># DP</a>
           
             <a href="/tags/组合数学/" rel="tag"># 组合数学</a>
           
