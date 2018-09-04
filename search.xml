@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[水题记录1.0]]></title>
+    <url>%2F2018%2F09%2F04%2F%E6%B0%B4%E9%A2%98%E8%AE%B0%E5%BD%951.0%2F</url>
+    <content type="text"><![CDATA[\(1/50\) 水题记录 1.BZOJ1951古代猪文 题目大意 : 要求求出 \[ G^{\sum \{C_{K}^{N}, K\mid N\}} \% 999911659 \] \(N \leq 10^9 , G \leq 10^9\) 题解 : 我们考虑一个事实 \[ G ^ P = G ^ {P \% \phi(P)} (mod \ \ P) \] 因为\(P\)是质数所以\(G^{\phi(P)} = 1(mod \ \ P)\), 然后可以知道, \[ G ^ P = G ^ {P + k \cdot \phi(P)} (mod \ \ P) \] 即与上面那个式子等价 然后我们考虑怎么求 \[ \sum \{C_{K}^{N}, K\mid N\} \% \phi(P) \] 因为\(\phi(P)\)不是质数我们考虑用\(ExLucas\) \[ \phi(P) = P - 1 = 2 \cdot 3 \cdot 4679 \cdot 35617 \] 这样就很水了, 因为对于\(\phi(P)\)的每个素因子的幂都是\(1\) 所以直接对于每个素因子用一下\(Lucas\), 最后直接\(CRT\)合并一下素膜数就好了, 并不用ExCRT, 水水水 代码 : 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677#include &lt;bits/stdc++.h&gt;using namespace std;const int maxn = 4e4 + 5;const int P[5] = &#123;999911659, 2, 3, 4679, 35617&#125;;int fac[5][maxn], G, N, num[maxn], a[5];inline int read()&#123; char ch = getchar(); int u = 0, f = 1; while(!isdigit(ch))&#123;if(ch == '-')f = -1; ch = getchar();&#125; while(isdigit(ch))&#123;u = u * 10 + ch - 48; ch = getchar();&#125; return u * f;&#125;inline int ksm(int x, int k, int mod)&#123; if(x == mod)return 0; int cnt = 1; while(k)&#123; if(k &amp; 1)cnt = 1ll * cnt * x % mod; x = 1ll * x * x % mod; k &gt;&gt;= 1; &#125; return cnt;&#125;inline int com(int n, int m, int k)&#123; if(m &gt; n)return 0; return (int)(1ll * fac[k][n] * ksm(fac[k][n - m], P[k] - 2, P[k]) % P[k] * ksm(fac[k][m], P[k] - 2, P[k]) % P[k]);&#125;inline int C(int n, int m, int k)&#123; if(m == 0 || n == 0)return 1; return (int)(1ll * C(n / P[k], m / P[k], k) * com(n % P[k], m % P[k], k) % P[k]);&#125;inline int exgcd(int a, int b, int &amp;x, int &amp;y)&#123; if(b == 0)&#123;x = 1; y = 0; return a;&#125; int x0 = 0, y0 = 0; int d = exgcd(b, a % b, y0, x0); x = x0; y = y0 - ((a / b) * x0); return d;&#125;inline int china(int *a, const int *m, int n)&#123; int A = 0, M = 1, tmp; for(register int i = 1; i &lt;= n; i++)M *= m[i]; for(register int i = 1; i &lt;= n; i++)&#123; int Mi = M / m[i], inv; exgcd(Mi, m[i], inv, tmp); A = (A + 1ll * a[i] * Mi * inv) % M; &#125; return (A % M + M) % M;&#125;int main()&#123; N = read(); G = read(); for(register int i = 1; i * i &lt;= N; i++) if(N % i == 0)&#123; num[++num[0]] = i; if(i * i != N)num[++num[0]] = N / i; &#125; for(register int k = 1; k &lt; 5; k++)&#123; fac[k][0] = 1; for(register int i = 1; i &lt; maxn; i++) fac[k][i] = 1ll * fac[k][i - 1] * i % P[k]; &#125; for(register int k = 1; k &lt; 5; k++) for(register int i = 1; i &lt;= num[0]; i++) a[k] = (a[k] + C(N, num[i], k)) % P[k]; /*for(register int i = 1; i &lt;= num[0]; i++) cout &lt;&lt; "num[" &lt;&lt; i &lt;&lt; "] = " &lt;&lt; num[i] &lt;&lt; endl; for(register int i = 1; i &lt; 5; i++) cout &lt;&lt; "a[" &lt;&lt; i &lt;&lt; "] = " &lt;&lt; a[i] &lt;&lt; endl; int o = china(a, P, 4); cout &lt;&lt; "P = " &lt;&lt; o &lt;&lt; endl; cout &lt;&lt; "G = " &lt;&lt; G &lt;&lt; endl;*/ cout &lt;&lt; ksm(G, china(a, P, 4), P[0]); return 0;&#125;]]></content>
+      <categories>
+        <category>OI刷题记录</category>
+      </categories>
+      <tags>
+        <tag>CRT</tag>
+        <tag>Exgcd</tag>
+        <tag>Lucas</tag>
+        <tag>ExLucas</tag>
+        <tag>费马小定理</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[中国剩余定理学习笔记]]></title>
     <url>%2F2018%2F09%2F03%2FCRT%2F</url>
     <content type="text"><![CDATA[中国剩余定理 有一组膜方程, 要求求出最小的\(x\) \[ \begin{cases}x = a_1(mod\ \ m_1) \\ x = a_2(mod \ \ m_2)\\ x = a_3(mod \ \ m_3)\\ .......... \\ x = a_n (mod \ \ m_n)\end{cases} \] \(m_i\)两两互质时 我们引入中国剩余定理 定义\(M = \prod m_i\), 相当于要求我们构造出一个\(A = x (mod \ \ M)\) 定义\(M_i = \frac {M}{m_i}\), \(M_i^{-1}\)为\(M_i\)在膜\(M\)意义下的逆元, 然后我们有下列等式: \[ a_i \cdot M_i \cdot M_i^{-1} = a_i(mod \ \ m_i)\\ a_i \cdot M_i \cdot M_i^{-1} = 0(mod \ \ M_i) \] 我们可以构造出一个最小解\(A = \sum a_i \cdot M_i \cdot M_i^{-1} (mod \ \ M)\) \(PS\) : 这里求逆元必须要用\(Exgcd\), 因为不保证\(m_i\)为质数, 只保证\(M_i\)与\(m_i\)互质 证明 : 不会, 待填坑...... 代码 : 123456789101112131415161718192021222324252627282930313233343536373839404142#include &lt;bits/stc++.h&gt;using namesapce std;typedef long long LL;const int maxn = 1e5 + 5;LL n, m[maxn], a[maxn];inline LL read()&#123; char ch = getchar(); LL u = 0, f = 1; while(!isdigit(ch))&#123;if(ch == '-')f = -1; ch = getchar();&#125; while(isdigit(ch))&#123;u = u * 10 + ch - 48; ch = getchar();&#125; return u * f;&#125;inline LL exgcd(LL a, LL b, LL &amp;x, LL &amp;y)&#123; if(b == 0)&#123;x = 1; y = 0; return a;&#125; LL x0 = 0, y0 = 0; LL d = exgcd(b, a % b, y0, x0); x = x0; y = y0 - ((a / b) * x0); return d;&#125;inline LL china(LL *a, LL *m, LL n)&#123; LL M = 1, ans = 0, tmp; for(register int i = 1; i &lt;= n; i++)M *= m[i]; for(register int i = 1; i &lt;= n; i++)&#123; int Mi = M / m[i], inv; exgcd(Mi, m[i], inv, tmp); ans = (ans + Mi * inv * a[i]) % M; &#125; return (M + ans % M) % M;&#125;int main()&#123; n = read(); for(register int i = 1; i &lt;= n; i++) a[i] = read(), m[i] = read(); cout &lt;&lt; china(a, m, n); return 0;&#125; \(m_i\)为任意数 我们引入拓展中国剩余定理, 比如对于一组膜方程 : \[ \begin{cases} x = a_1 (mod \ \ m_1)\\ x = a_2(mod \ \ m_2)\end{cases} \] 我们将式子转换一下 \[ x = a_1 + m_1 \cdot y_1, x = a_2 + m_2 \cdot y_2 \] \[ x = a_1 + m_1 \cdot y_1 = a_2 + m_2 \cdot y_2 \] \[ a_1 - a_2 = m_2 \cdot y_2 - m_1 \cdot y_1 \] 然后我们设\(d = gcd(m_1, m_2)\), 并使得\(m_1 \cdot x + m_2 \cdot y = d\), 显然如果\(d \not\mid (a_1 - a_2)\)无解, 否则就是有解 然后使得\(y_1 = \frac {a_1 - a_2}{d} \cdot x, y_2 = \frac {a_1 - a_2}{d} \cdot y\) \[ A = a_1 + m_1 \cdot y_1 \] 我们就得到了一个合法解, \(x = A(mod \ \ lcm(m_1, m_2))\) 如果膜方程有很多的话, 就依次合并就好了 代码 : 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950#include &lt;bits/stdc++.h&gt;using namespace std;typedef long long LL;const int maxn = 1e5 + 5;LL n, m[maxn], a[maxn];inline LL read()&#123; char ch = getchar(); LL u = 0, f = 1; while(!isdigit(ch))&#123;if(ch == '-')f = -1; ch = getchar();&#125; while(isdigit(ch))&#123;u = u * 10 + ch - 48; ch = getchar();&#125; return u * f;&#125;inline LL exgcd(LL a, LL b, LL &amp;x, LL &amp;y)&#123; if(b == 0)&#123;x = 1; y = 0; return a;&#125; LL x0 = 0, y0 = 0; LL d = exgcd(b, a % b, y0, x0); x = x0; y = y0 - ((a / b) * x0); return d;&#125;inline LL mul(LL x, LL y, LL mod)&#123; x %= mod; y %= mod; return (x * y - (LL)(((long double)x * y + 0.5) / mod) * mod) % mod;&#125;inline LL exchina(LL *a, LL *m, LL n)&#123; LL A = a[1], M = m[1], t, d, x, y; for(register int i = 2; i &lt;= n; i++)&#123; d = exgcd(M, m[i], x, y); if((a[i] - A) % d != 0)return -1; t = m[i] / d; x = mul(x, (a[i] - A) / d, t); //x *= ((a[i] - A) / d); //x = (t + x % t) % t; A = (mul(M, x, M * t) + A) % (M * t); M *= t; A %= M; &#125; return (A % M + M) % M;&#125;int main()&#123; n = read(); for(register int i = 1; i &lt;= n; i++) m[i] = read(), a[i] = read(); cout &lt;&lt; (exchina(a, m, n)); return 0;&#125; 例题讲解 1.BZOJ5418屠龙勇士 题目大意 : 给你一组以下形式的膜方程, 并让你求出最小解 \[ w_i \cdot x = a_i (mod \ \ p_i) \] 我们还是考虑转换一下式子 : \[ w_i \cdot x_i + p_i \cdot y_i = a_i \] 再考虑直接用\(Exgcd\)求出\(w_i \cdot a + p_i \cdot b = gcd(w_i, p_i) = d\), 显然如果\(d \not\mid a_i\)无解, 否则 \[ x = a + k \cdot \frac{p_i}{d} \] 这样我们将膜方程转化为了 : \[ \begin{cases} x = \frac{a_1}{gcd(w_1, p_1)} (mod \ \ \frac{p_1}{gcd(w_1, p_1)})\\ x = \frac{a_2}{gcd(w_2, p_2)} (mod \ \ \frac{p_2}{gcd(w_2, p_2)})\\ ..........\\ x = \frac{a_n}{gcd(w_n, p_n)} (mod \ \ \frac{p_n}{gcd(w_n, p_n)})\\ \end{cases} \] 这样我们就可以愉悦的套上\(ExCRT\)的模板了 但是上面我们所讨论的都是基于\(a_i \leq p_i\)的, 但是如果不保证这个条件的话就会出一些问题, 因为有可能我们根本就没有把血量杀到小于等于零但是在膜\(p_i\)的意义下血量就是零了, 所以这个不是完全正确的, 但是我们又发现所有不满足\(a_i \leq p_i\)的测试点都满足\(p_i = 1\), 所以对于这种情况答案就是 : \[ max\{\lceil \frac{a_i}{w_i} \rceil\} \] 最后关于选剑的问题我们直接用\(multiset\)维护一下就好了, 具体如下 : 先在\(multiset\)里面\(upper\_bound\)一下, 如果这个迭代器为\(begin()\)那么这个答案就是这个迭代器所代表的值, 否则就把这个迭代器减减一下, 就是答案了 Summary 水水水 咕咕咕]]></content>
@@ -21,8 +36,8 @@
         <category>模拟赛</category>
       </categories>
       <tags>
-        <tag>二分</tag>
         <tag>DP</tag>
+        <tag>二分</tag>
         <tag>组合数学</tag>
         <tag>容斥原理</tag>
       </tags>
@@ -35,11 +50,11 @@
         <category>OI笔记</category>
       </categories>
       <tags>
-        <tag>DP</tag>
         <tag>仙人掌</tag>
         <tag>图论</tag>
         <tag>圆方树</tag>
         <tag>单调队列</tag>
+        <tag>DP</tag>
         <tag>树链剖分</tag>
         <tag>倍增</tag>
         <tag>Tarjan</tag>
@@ -70,10 +85,10 @@
         <category>CodeForces</category>
       </categories>
       <tags>
-        <tag>二分</tag>
         <tag>模拟</tag>
-        <tag>dfs</tag>
+        <tag>二分</tag>
         <tag>斐蜀定理</tag>
+        <tag>dfs</tag>
       </tags>
   </entry>
   <entry>
@@ -87,8 +102,8 @@
       <tags>
         <tag>DP</tag>
         <tag>模拟</tag>
-        <tag>状态压缩</tag>
         <tag>dfs</tag>
+        <tag>状态压缩</tag>
         <tag>并查集</tag>
         <tag>数论</tag>
       </tags>
