@@ -67,13 +67,13 @@
         <category>CodeForces</category>
       </categories>
       <tags>
+        <tag>状态压缩</tag>
         <tag>模拟</tag>
         <tag>Hash</tag>
         <tag>KMP</tag>
         <tag>Greedy</tag>
         <tag>计算几何</tag>
         <tag>Pollard-rho</tag>
-        <tag>状态压缩</tag>
       </tags>
   </entry>
   <entry>
@@ -85,9 +85,9 @@
       </categories>
       <tags>
         <tag>二分</tag>
+        <tag>dfs</tag>
         <tag>模拟</tag>
         <tag>斐蜀定理</tag>
-        <tag>dfs</tag>
       </tags>
   </entry>
   <entry>
@@ -100,9 +100,9 @@
       </categories>
       <tags>
         <tag>DP</tag>
-        <tag>模拟</tag>
         <tag>dfs</tag>
         <tag>状态压缩</tag>
+        <tag>模拟</tag>
         <tag>并查集</tag>
         <tag>数论</tag>
       </tags>
