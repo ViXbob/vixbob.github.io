@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="DP,仙人掌,图论,圆方树,单调队列,树链剖分,倍增,Tarjan," />
+  <meta name="keywords" content="CRT,Exgcd,ExLucas," />
 
 
 
@@ -79,20 +79,17 @@
 
 
 
-<meta name="keywords" content="DP,仙人掌,图论,圆方树,单调队列,树链剖分,倍增,Tarjan">
+<meta name="keywords" content="CRT,Exgcd,ExLucas">
 <meta property="og:type" content="article">
-<meta property="og:title" content="浅谈仙人掌和圆方树">
-<meta property="og:url" content="http://yoursite.com/2018/08/31/Cactus/index.html">
+<meta property="og:title" content="卢卡斯定理学习笔记">
+<meta property="og:url" content="http://yoursite.com/2018/09/08/ExLucas/index.html">
 <meta property="og:site_name" content="ViXbob">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://r.photo.store.qq.com/psb?/V12wIROa0MTsCi/ZayFJrhxuRv.oNtLHKJRQkdvQ2g0.gm6rjKZHOdZvjM!/r/dDQBAAAAAAAA">
-<meta property="og:image" content="https://www.lydsy.com/JudgeOnline/images/1023/1.jpg">
-<meta property="og:image" content="http://wx1.sinaimg.cn/mw690/0060lm7Tly1fv07s37l7mj30k00akq3l.jpg">
-<meta property="og:image" content="http://wx1.sinaimg.cn/mw690/0060lm7Tly1fv07u9zu73j30wx0bo752.jpg">
-<meta property="og:updated_time" content="2018-09-06T15:02:43.091Z">
+<meta property="og:image" content="http://r.photo.store.qq.com/psb?/V12wIROa0MTsCi/fQdavSnNLoUa6Snba7jQtoUe5QEPe9jGRXdd0.A*Sv8!/r/dDYBAAAAAAAA">
+<meta property="og:updated_time" content="2018-09-08T08:04:26.558Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="浅谈仙人掌和圆方树">
-<meta name="twitter:image" content="http://r.photo.store.qq.com/psb?/V12wIROa0MTsCi/ZayFJrhxuRv.oNtLHKJRQkdvQ2g0.gm6rjKZHOdZvjM!/r/dDQBAAAAAAAA">
+<meta name="twitter:title" content="卢卡斯定理学习笔记">
+<meta name="twitter:image" content="http://r.photo.store.qq.com/psb?/V12wIROa0MTsCi/fQdavSnNLoUa6Snba7jQtoUe5QEPe9jGRXdd0.A*Sv8!/r/dDYBAAAAAAAA">
 
 
 
@@ -122,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/08/31/Cactus/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/09/08/ExLucas/"/>
 
 
 
 
 
-  <title>浅谈仙人掌和圆方树 | ViXbob</title>
+  <title>卢卡斯定理学习笔记 | ViXbob</title>
   
 
 
@@ -289,7 +286,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/31/Cactus/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/08/ExLucas/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ViXbob">
@@ -306,7 +303,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">浅谈仙人掌和圆方树</h1>
+          <h1 class="post-title" itemprop="name headline">卢卡斯定理学习笔记</h1>
         
 
         <div class="post-meta">
@@ -318,8 +315,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-31T15:36:28+08:00">
-                2018-08-31
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-08T15:21:17+08:00">
+                2018-09-08
               </time>
             
 
@@ -372,7 +369,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  1,739
+                  1,117
                 </span>
               
 
@@ -388,7 +385,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  7
+                  6
                 </span>
               
             </div>
@@ -409,85 +406,38 @@
       
 
       
-        <p><img src="http://r.photo.store.qq.com/psb?/V12wIROa0MTsCi/ZayFJrhxuRv.oNtLHKJRQkdvQ2g0.gm6rjKZHOdZvjM!/r/dDQBAAAAAAAA"> <a id="more"></a></p>
-<h2 id="什么是仙人掌">1.什么是仙人掌</h2>
-<p>给你一张无向图，一条边最多只在一个简单环当中的图被称之为仙人掌，例如：</p>
-<div class="figure">
-<img src="https://www.lydsy.com/JudgeOnline/images/1023/1.jpg">
+        <div class="figure">
+<img src="http://r.photo.store.qq.com/psb?/V12wIROa0MTsCi/fQdavSnNLoUa6Snba7jQtoUe5QEPe9jGRXdd0.A*Sv8!/r/dDYBAAAAAAAA">
 
 </div>
-<p><strong>(图片出自BZOJ1023)</strong></p>
-<p>又或者这样</p>
-<div class="figure">
-<img src="http://wx1.sinaimg.cn/mw690/0060lm7Tly1fv07s37l7mj30k00akq3l.jpg">
-
-</div>
-<p><strong>(图片源于网络)</strong></p>
-<h2 id="什么是圆方树">2.什么是圆方树</h2>
-<p>仙人掌<span class="math inline">\(G = (V, E)\)</span> 的圆方树 <span class="math inline">\(T = (V_T,E_T)\)</span> 为满足以下条件的无向图：</p>
-<ul>
-<li><p><span class="math inline">\(V_T = R_T \bigcup S_T, R_T = V , R_T \bigcap S_T \ne ∅\)</span> , 我们称 <span class="math inline">\(R_T\)</span> 集合为圆点, <span class="math inline">\(S_T\)</span> 集合为方点</p></li>
-<li><p><span class="math inline">\(\large{\forall} {e} \large\in E\)</span> , 若 <span class="math inline">\(e\)</span> 不在任何简单环中, 则<span class="math inline">\(e \large\in E_T\)</span></p></li>
-<li><p>对于每个仙人掌的简单环<span class="math inline">\(R\)</span> ,存在方点<span class="math inline">\(P_R \large\in S_T\)</span> , 并且 <span class="math inline">\(\large{\forall} {p} \large\in R\)</span> 满足<span class="math inline">\((P_R, P) \large\in E_T\)</span> , 即对每个环建立一个方点并连向这个环里的所有点</p></li>
-</ul>
-<p>通俗一点的说 : 就是对于每个简单环都额外建一个方点 , 然后将每个圆点向方点连一条边 , 最后再将不连通的圆点连上原本有的边 , 就构成了圆方树</p>
-<p>以下是对于圆方树正确性的证明：</p>
-<p>感性证明</p>
-<ul>
-<li>不在环上的点和边不会改变其树的性质, 而每个在环上的点都会连向方点, 形成一个菊花图, 所以这一定是一颗树</li>
-</ul>
-<p>理论证明</p>
-<ul>
-<li>原图中的环的个数为 <span class="math inline">\(|E| - |V| + 1\)</span> , 则 <span class="math inline">\(|V_T| = |S_T| + |R_T| = |V| + |E| - |V| + 1 = |E| + 1, |E_T| = |E|\)</span> <strong>(大小为</strong><span class="math inline">\(\textbf{r}\)</span><strong>的环在仙人掌和圆方树中都是</strong><span class="math inline">\(\textbf{r}\)</span><strong>条边)</strong> , 因此满足<span class="math inline">\(|V_T| = |E_T| + 1\)</span></li>
-</ul>
-<h2 id="如何构造圆方树">3.如何构造圆方树</h2>
-<p>我们直接从任意一个点开始进行<span class="math inline">\(Tarjan\)</span> 求点双联通分量 , 然后对于每一个点双联通分量建立一个方点 , 然后连边向这个点双联通分量里的每一个点连边, 最后处理没有连边的圆圆点对</p>
-<p><span class="math inline">\(PS\)</span> : 个人建议通过并查集维护一下连通性在判断是否需要将原图中的边加入进来 , 而且这样可以避免重边带来的一些奇奇怪怪的<span class="math inline">\(bug\)</span></p>
-<p>如图 :</p>
-<div class="figure">
-<img src="http://wx1.sinaimg.cn/mw690/0060lm7Tly1fv07u9zu73j30wx0bo752.jpg">
-
-</div>
-<p>虚边是原图上的边 , 实边是新建立的圆方树上的边 , 有一些虚边和实边重和的请况可以按照上述并查集的方法来维护</p>
-<h2 id="圆方树的性质">4.圆方树的性质</h2>
-<ul>
-<li><span class="math inline">\(\large{\forall} {(x, y)} \large\in E_T, \{x, y\} \large\cap R_T \ne \varnothing\)</span> , 通俗点说就是两个方点一定不会相连</li>
-<li><p>在构造的过程中无论取什么点为根 , 构造出的圆方树都是一样的(在形态上) , 因此圆方树是无根树 定义 : 子仙人掌 &gt; 以<span class="math inline">\(\textbf{r}\)</span>为根的仙人掌上的点<span class="math inline">\(\textbf{p}\)</span>的子仙人掌是从仙人掌中去掉<span class="math inline">\(\textbf{p}\)</span>到<span class="math inline">\(\textbf{r}\)</span>的简单路径上的所有边之后 , <span class="math inline">\(\textbf{p}\)</span>所在的联通块</p></li>
-<li><p>以<span class="math inline">\(\textbf{r}\)</span>为根的仙人掌中 , 点<span class="math inline">\(\textbf{p}\)</span>的子仙人掌就是圆方树以<span class="math inline">\(\textbf{r}\)</span>为根时点<span class="math inline">\(\textbf{p}\)</span>的子树中的所有圆点所构成的图</p></li>
-</ul>
-<h2 id="利用圆方树和仙人掌解决问题">5.利用圆方树和仙人掌解决问题</h2>
-<h4 id="bzoj4316小c的独立集"><a href="https://www.lydsy.com/JudgeOnline/problem.php?id=4316" target="_blank" rel="noopener">BZOJ4316小C的独立集</a></h4>
-<p>题面 : 求一颗仙人掌上的最大独立集</p>
-<p>题解 : 我们先考虑如果在一棵树上应该怎么做 , 考虑状态<span class="math inline">\(f[i][0/1]\)</span>表示这个点选或不选时以这个点为根的子树中的最大独立集是多少 , 那么转移就是 : <span class="math display">\[
-f[i][0] = \sum_{v \in son[i]}^{v} max(f[v][0], f[v][1]) \\
-f[i][1] = \sum_{v \in son[i]}^{v} f[v][0]
-\]</span> 我们再考虑环上如何转移 , 我们把这个环上深度最小的点称作这个环的根 , 我们还是考虑这个环的根选还是不选 , 然后我们把环展开 , 如果选择根节点的话 , 它两侧的点都是不能选的 , 否则就无所谓 , 然后剩下的就按树上的做法来搞就好了 , 所以转移就是 : <span class="math display">\[
-g[i][0] = max(g[i - 1][0], g[i - 1][1]) + f[id[i]][0] \\
-g[i][1] = g[i - 1][0] + f[id[i]][1]
-\]</span></p>
-<p>最后的答案就是<span class="math inline">\(max(f[root][0], f[root][1])\)</span> , 这道题就这么愉悦的水过辣</p>
-<h4 id="bzoj1023cactus仙人掌图"><a href="https://www.lydsy.com/JudgeOnline/problem.php?id=1023" target="_blank" rel="noopener">BZOJ1023cactus仙人掌图</a></h4>
-<p>题目大意 : 给你一颗仙人掌 , 求仙人掌上的两点之间最短路的最大值 , 就是仙人掌的直径</p>
-<p>题解 : 我们先考虑在树上怎么做 , 我们考虑状态<span class="math inline">\(f[i]\)</span>表示在以这个点为根的子树当中, 经过<span class="math inline">\(i\)</span>这个点的最长链的长度, 转移很显然, 就是: <span class="math display">\[
-f[i] = max \{ f[v] + w_{i,v}, v \in son[i] \}
-\]</span> 然后我们就在转移的过程中更新一下答案就好了</p>
-<p>然后还是一样的思路我们把环单独拎出来搞一下, 但是怎么弄呢, 发现不好在环上直接<span class="math inline">\(dp\)</span>, 因为环上的最短距离是不确定的, 我们考虑把环拆成链, 直接在链上<span class="math inline">\(dp\)</span>, 但是如果直接转移的话是<span class="math inline">\(n^2\)</span>的, 式子是这样的: <span class="math display">\[
-ans = max(ans, max \{ f[r] + f[l] + r - l, r - l &lt; \frac{len}{2} \} )
-\]</span> 然后我们观察发现如果固定左端点, 新加入一个右端点我们可以将一些没有当前优的右端点给弹掉, 这个东西是可以用单调队列<span class="math inline">\(O(n)\)</span>维护的, 具体的 :</p>
-<ul>
-<li>如果当前队尾和队头的插值超过环的长度的二分之一, 弹掉队头, 直到符合条件为止</li>
-<li>如果<span class="math inline">\(f[q[tail]] + q[tail] \leq f[i] + i\)</span>, 弹掉队尾, 直到符合条件为止</li>
-</ul>
-<p>然后就可以开心的<span class="math inline">\(dp\)</span>辣</p>
-<h4 id="bzoj2125最短路"><a href="https://www.lydsy.com/JudgeOnline/problem.php?id=2125" target="_blank" rel="noopener">BZOJ2125最短路</a></h4>
-<p>题目大意 : 给你一颗仙人掌, 有<span class="math inline">\(n\)</span>次询问, 每次询问两点之间的最短路, <span class="math inline">\(n \leq 10^5\)</span></p>
-<p>题解 : 对于上面的题, 我们可以不用建圆方树, 但是这道题我们考虑将圆方树建出来, 但是有一个问题, 我们怎么设定圆点到方点的边权, 这里有一个小技巧, 我们对于每一个环都建立一个根, 每个圆点到方点的边权就是这个圆点在其所在的环中到这个环的根的最短距离, 这样的话就可以保证从深度小的点向深度大的点遍历时, 是点与点之间的最短距离</p>
-<p>建完图以后, 对其进行倍增预处理, 和剖分, 对于每次查询<span class="math inline">\((u, v)\)</span>, 我们我们求一下<span class="math inline">\(LCA(u, v)\)</span> 如果<span class="math inline">\(LCA(u, v)\)</span>是圆点那么就和普通的树上查询距离是一样的答案就是<span class="math inline">\(dis[u] + dis[v] - dis[LCA(u, v)]\)</span>, 如果是方点的话, 就说明<span class="math inline">\(u, v\)</span>的祖先是在一个环上的, 这种情况不能直接搞, 我们用倍增向上跳到方点下的那个两个点<span class="math inline">\(fa_u, fa_v\)</span>, 让后求一下环上两点的最短距离<span class="math inline">\(L\)</span>,那么最后的答案就是<span class="math inline">\(dis[u] + dis[v] - dis[fa_u] - dis[fa_v] + L\)</span></p>
-<h2 id="广义仙人掌">6.广义仙人掌</h2>
-<p>填坑中.....</p>
-<h2 id="summary">7.Summary</h2>
-<p><del>水水水</del></p>
-<p><del>咕咕咕</del></p>
+<a id="more"></a>
+<h1 id="卢卡斯定理">卢卡斯定理</h1>
+<p>常用于求解<span class="math inline">\(\binom{n}{m} (mod \ \ P)\)</span> , 且<span class="math inline">\(n\)</span>, <span class="math inline">\(m\)</span>值域特别大, 而 <span class="math inline">\(P\)</span> 的值域比较小</p>
+<h2 id="p为素数"><span class="math inline">\(P\)</span>为素数</h2>
+<p>直接记定理就好了 : <span class="math display">\[
+\binom{n}{m} (mod \ \ P)= \binom{n / P}{m / P} \cdot \binom {n \% P}{m \% P} (mod\ \ P)
+\]</span> 然后我们预处理出<span class="math inline">\(1 \sim P\)</span>的阶乘和逆元, 那么求这个组合数的复杂度就是<span class="math inline">\(O(P + log_P^{n})\)</span></p>
+<p>代码 :</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">1e6</span> + <span class="number">5</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n, m, fac[maxn], P;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">read</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">char</span> ch = getchar(); <span class="keyword">int</span> u = <span class="number">0</span>, f = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span>(!<span class="built_in">isdigit</span>(ch))&#123;<span class="keyword">if</span>(ch == <span class="string">'-'</span>)f = <span class="number">-1</span>; ch = getchar();&#125;</span><br><span class="line">	<span class="keyword">while</span>(<span class="built_in">isdigit</span>(ch))&#123;u = u * <span class="number">10</span> + ch - <span class="number">48</span>; ch = getchar();&#125; <span class="keyword">return</span> u * f;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">ksm</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> k)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> cnt = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span>(k)&#123;</span><br><span class="line">		<span class="keyword">if</span>(k &amp; <span class="number">1</span>)cnt = <span class="number">1l</span>l * cnt * x % P;</span><br><span class="line">		x = <span class="number">1l</span>l * x * x % P; k &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">	&#125; <span class="keyword">return</span> cnt;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">C</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> m, <span class="keyword">int</span> P)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(n &lt; m)<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">return</span> (<span class="keyword">int</span>)(<span class="number">1l</span>l * fac[n] * ksm(fac[n - m], P - <span class="number">2</span>) % P * ksm(fac[m], P - <span class="number">2</span>) % P);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="title">Lucas</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> m, <span class="keyword">int</span> P)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(n == <span class="number">0</span> || m == <span class="number">0</span>)<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">return</span> (<span class="keyword">int</span>)(<span class="number">1l</span>l * Lucas(n / P, m / P, P) * C(n % P, m % P, P) % P);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	n = read(); m = read(); P = read();</span><br><span class="line">	fac[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= P; i++)</span><br><span class="line">		fac[i] = <span class="number">1l</span>l * fac[i - <span class="number">1</span>] * i % P;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; Lucas(n, m, P);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="p-不为素数"><span class="math inline">\(P\)</span> 不为素数</h2>
+<p>其实这个东西和卢卡斯定理并没有什么关系</p>
+<p>因为<span class="math inline">\(P\)</span>不为素数, 所以 : <span class="math display">\[
+P = \prod P_i^{a_i}
+\]</span> 我们考虑求出 <span class="math display">\[
+\binom {n}{m} (mod \ \ P_i^{a_i})
+\]</span> 然后直接用<span class="math inline">\(CRT\)</span>合并就是答案了</p>
+<p>那么现在问题转化为了如何快速求出<span class="math inline">\(\binom{n}{m}(mod\ \ P_i^{a_i})\)</span>了</p>
+<p>因为实在膜 <span class="math inline">\(P_i^{a_i}\)</span> 的意义下, 所以阶乘其实是有循环节的, 我们可以考虑直接暴力处理循环节和不完整的循环</p>
+<p>难道这样就好了吗, 事实上并没有这么简单</p>
+<p>因为<span class="math inline">\(P_i^{a_i}\)</span>是<span class="math inline">\(P_i\)</span>的倍数, 所以很有可能再膜意义下就直接变为零了, 但是事实上并不是这样的, 我们观察组合数的公式 : <span class="math display">\[
+\binom {n}{m} = \frac{n!}{(n - m)!m!}
+\]</span> 所以分母和分子的<span class="math inline">\(P_i\)</span>是可已被约掉的, 所以我们不能直接取膜, 我们再考虑把是<span class="math inline">\(P_i\)</span>的倍数的数给单独提出来搞一下</p>
+<p>那么 <span class="math display">\[
+fac(n) = \big(fac(\lfloor \frac{n}{P_i^{a_i}} \rfloor) \cdot P_i^{\lfloor \frac{n}{P_i^{a_i}} \rfloor}\big) \cdot \big(\prod_{i = 1}^{P_i^{a_i}} i\big) \cdot \big(\prod_{i = 1}^{n \% P_i^{a_i}} i\big) (mod \ \ P_i^{a_i})
+\]</span> 我们发现这个是一个递归式, 那么直接递归就好了, 特别的如果<span class="math inline">\(n = 0\)</span>就返回<span class="math inline">\(1\)</span></p>
+<p>需要注意的是<span class="math inline">\(P_i\)</span>这个东西不能在递归的时候直接乘上, 我们考虑, 在递归完之后, 或者递归之前直接处理出来就好了</p>
+<p>代码 :</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> LL;</span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line">LL n, m, P;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> LL <span class="title">read</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">char</span> ch = getchar(); LL u = <span class="number">0</span>, f = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span>(!<span class="built_in">isdigit</span>(ch))&#123;<span class="keyword">if</span>(ch == <span class="string">'-'</span>)f = <span class="number">-1</span>; ch = getchar();&#125;</span><br><span class="line">	<span class="keyword">while</span>(<span class="built_in">isdigit</span>(ch))&#123;u = u * <span class="number">10</span> + ch - <span class="number">48</span>; ch = getchar();&#125; <span class="keyword">return</span> u * f;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> LL <span class="title">ksm</span><span class="params">(LL x, LL k, LL P)</span></span>&#123;</span><br><span class="line">	LL cnt = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span>(k)&#123;</span><br><span class="line">		<span class="keyword">if</span>(k &amp; <span class="number">1</span>)cnt = cnt * x % P;</span><br><span class="line">		x = x * x % P; k &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">	&#125; <span class="keyword">return</span> cnt;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> LL <span class="title">Exgcd</span><span class="params">(LL a, LL b, LL &amp;x, LL &amp;y)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(b == <span class="number">0</span>)&#123;x = <span class="number">1</span>; y = <span class="number">0</span>; <span class="keyword">return</span> a;&#125;</span><br><span class="line">	LL x0 = <span class="number">0</span>, y0 = <span class="number">0</span>;</span><br><span class="line">	LL d = Exgcd(b, a % b, y0, x0);</span><br><span class="line">	x = x0; y = y0 - ((a / b) * x0);</span><br><span class="line">	<span class="keyword">return</span> d;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> LL <span class="title">fac</span><span class="params">(LL n, LL Pi, LL Pk)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(n == <span class="number">0</span>)<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	LL rnt = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= Pk; i++)</span><br><span class="line">		<span class="keyword">if</span>(i % Pi)rnt = rnt * i % Pk;</span><br><span class="line">	rnt = ksm(rnt, n / Pk, Pk);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n % Pk; i++)</span><br><span class="line">		<span class="keyword">if</span>(i % Pi)rnt = rnt * i % Pk;</span><br><span class="line">	<span class="keyword">return</span> rnt * fac(n / Pi, Pi, Pk) % Pk;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> LL <span class="title">inv</span><span class="params">(LL x, LL P)</span></span>&#123;</span><br><span class="line">	LL inv, tmp;</span><br><span class="line">	Exgcd(x, P, inv, tmp);</span><br><span class="line">	<span class="keyword">return</span> (inv + P) % P;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> LL <span class="title">ExLucas</span><span class="params">(LL n, LL m, LL Pi, LL Pk)</span></span>&#123;</span><br><span class="line">	LL C1 = fac(n, Pi, Pk), C2 = fac(n - m, Pi, Pk), C3 = fac(m, Pi, Pk);</span><br><span class="line">	LL tim = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">register</span> LL i = n; i; i /= Pi)tim += i / Pi;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">register</span> LL i = n - m; i; i /= Pi)tim -= i / Pi;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">register</span> LL i = m; i; i /= Pi)tim -= i / Pi;</span><br><span class="line">	<span class="keyword">return</span> C1 * inv(C2, Pk) % Pk * inv(C3, Pk) % Pk * ksm(Pi, tim, Pk) % Pk;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> LL <span class="title">China</span><span class="params">(LL n, LL m, LL P)</span></span>&#123;</span><br><span class="line">	LL A = <span class="number">0</span>, M = P, Pk = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">register</span> LL i = <span class="number">2</span>; i &lt;= P; i++)</span><br><span class="line">		<span class="keyword">if</span>(P % i == <span class="number">0</span>)&#123;</span><br><span class="line">			Pk = <span class="number">1</span>;</span><br><span class="line">			<span class="keyword">while</span>(P % i == <span class="number">0</span>)Pk *= i, P /= i;</span><br><span class="line">			A = (A + ExLucas(n, m, i, Pk) * inv(M / Pk, Pk) % M * (M / Pk) % M) % M;</span><br><span class="line">		&#125;</span><br><span class="line">	<span class="keyword">return</span> (A + M) % M;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	n = read(); m = read(); P = read();</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; China(n, m, P);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -505,21 +455,11 @@ ans = max(ans, max \{ f[r] + f[l] + r - l, r - l &lt; \frac{len}{2} \} )
       
         <div class="post-tags">
           
-            <a href="/tags/DP/" rel="tag"># DP</a>
+            <a href="/tags/CRT/" rel="tag"># CRT</a>
           
-            <a href="/tags/仙人掌/" rel="tag"># 仙人掌</a>
+            <a href="/tags/Exgcd/" rel="tag"># Exgcd</a>
           
-            <a href="/tags/图论/" rel="tag"># 图论</a>
-          
-            <a href="/tags/圆方树/" rel="tag"># 圆方树</a>
-          
-            <a href="/tags/单调队列/" rel="tag"># 单调队列</a>
-          
-            <a href="/tags/树链剖分/" rel="tag"># 树链剖分</a>
-          
-            <a href="/tags/倍增/" rel="tag"># 倍增</a>
-          
-            <a href="/tags/Tarjan/" rel="tag"># Tarjan</a>
+            <a href="/tags/ExLucas/" rel="tag"># ExLucas</a>
           
         </div>
       
@@ -532,8 +472,8 @@ ans = max(ans, max \{ f[r] + f[l] + r - l, r - l &lt; \frac{len}{2} \} )
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/08/23/EducationalCodeforcesRound48 /" rel="next" title="EducationalCodeForcesRound48">
-                <i class="fa fa-chevron-left"></i> EducationalCodeForcesRound48
+              <a href="/2018/09/04/水题记录1.0/" rel="next" title="水题记录1.0">
+                <i class="fa fa-chevron-left"></i> 水题记录1.0
               </a>
             
           </div>
@@ -541,10 +481,6 @@ ans = max(ans, max \{ f[r] + f[l] + r - l, r - l &lt; \frac{len}{2} \} )
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/09/02/20180902/" rel="prev" title="Streaming#5模拟赛">
-                Streaming#5模拟赛 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -702,7 +638,7 @@ ans = max(ans, max \{ f[r] + f[l] + r - l, r - l &lt; \frac{len}{2} \} )
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是仙人掌"><span class="nav-number">1.</span> <span class="nav-text">1.什么是仙人掌</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是圆方树"><span class="nav-number">2.</span> <span class="nav-text">2.什么是圆方树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何构造圆方树"><span class="nav-number">3.</span> <span class="nav-text">3.如何构造圆方树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#圆方树的性质"><span class="nav-number">4.</span> <span class="nav-text">4.圆方树的性质</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#利用圆方树和仙人掌解决问题"><span class="nav-number">5.</span> <span class="nav-text">5.利用圆方树和仙人掌解决问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#bzoj4316小c的独立集"><span class="nav-number">5.0.1.</span> <span class="nav-text">BZOJ4316小C的独立集</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#bzoj1023cactus仙人掌图"><span class="nav-number">5.0.2.</span> <span class="nav-text">BZOJ1023cactus仙人掌图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#bzoj2125最短路"><span class="nav-number">5.0.3.</span> <span class="nav-text">BZOJ2125最短路</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#广义仙人掌"><span class="nav-number">6.</span> <span class="nav-text">6.广义仙人掌</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#summary"><span class="nav-number">7.</span> <span class="nav-text">7.Summary</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#卢卡斯定理"><span class="nav-number">1.</span> <span class="nav-text">卢卡斯定理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#p为素数"><span class="nav-number">1.1.</span> <span class="nav-text">\(P\)为素数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#p-不为素数"><span class="nav-number">1.2.</span> <span class="nav-text">\(P\) 不为素数</span></a></li></ol></li></ol></div>
             
 
           </div>
