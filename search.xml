@@ -25,10 +25,10 @@
         <tag>组合数学</tag>
         <tag>CRT</tag>
         <tag>Exgcd</tag>
+        <tag>倍增</tag>
+        <tag>ExLucas</tag>
         <tag>Lucas</tag>
         <tag>费马小定理</tag>
-        <tag>ExLucas</tag>
-        <tag>倍增</tag>
         <tag>最短路</tag>
       </tags>
   </entry>
@@ -119,8 +119,8 @@
       <tags>
         <tag>DP</tag>
         <tag>模拟</tag>
-        <tag>状态压缩</tag>
         <tag>dfs</tag>
+        <tag>状态压缩</tag>
         <tag>并查集</tag>
         <tag>数论</tag>
       </tags>
