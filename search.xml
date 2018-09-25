@@ -10,8 +10,8 @@
       <tags>
         <tag>DP</tag>
         <tag>模拟</tag>
-        <tag>Z-function</tag>
         <tag>最短路</tag>
+        <tag>Z-function</tag>
       </tags>
   </entry>
   <entry>
@@ -35,16 +35,16 @@
         <category>OI刷题记录</category>
       </categories>
       <tags>
+        <tag>DP</tag>
+        <tag>组合数学</tag>
         <tag>CRT</tag>
         <tag>Exgcd</tag>
-        <tag>DP</tag>
         <tag>倍增</tag>
         <tag>计算几何</tag>
-        <tag>最短路</tag>
-        <tag>ExLucas</tag>
         <tag>Lucas</tag>
         <tag>费马小定理</tag>
-        <tag>组合数学</tag>
+        <tag>ExLucas</tag>
+        <tag>最短路</tag>
         <tag>Floyd</tag>
         <tag>状压DP</tag>
         <tag>凸包</tag>
@@ -71,8 +71,8 @@
         <category>模拟赛</category>
       </categories>
       <tags>
-        <tag>DP</tag>
         <tag>二分</tag>
+        <tag>DP</tag>
         <tag>组合数学</tag>
         <tag>容斥原理</tag>
       </tags>
@@ -85,11 +85,11 @@
         <category>OI笔记</category>
       </categories>
       <tags>
+        <tag>DP</tag>
         <tag>仙人掌</tag>
         <tag>图论</tag>
         <tag>圆方树</tag>
         <tag>单调队列</tag>
-        <tag>DP</tag>
         <tag>树链剖分</tag>
         <tag>倍增</tag>
         <tag>Tarjan</tag>
@@ -120,8 +120,8 @@
         <category>CodeForces</category>
       </categories>
       <tags>
-        <tag>模拟</tag>
         <tag>二分</tag>
+        <tag>模拟</tag>
         <tag>斐蜀定理</tag>
         <tag>dfs</tag>
       </tags>
