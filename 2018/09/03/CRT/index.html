@@ -381,7 +381,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  1,087
+                  1,236
                 </span>
               
 
@@ -397,7 +397,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  5
+                  6
                 </span>
               
             </div>
@@ -418,50 +418,62 @@
       
 
       
-        <p><img src="http://r.photo.store.qq.com/psb?/V12wIROa0MTsCi/.Ary9UmAWnXFM47jeunYAOmlk*Oq6T4VDh0AHQRqq8c!/r/dDQBAAAAAAAA" alt=""><br><a id="more"></a></p>
-<h1 id="中国剩余定理"><a href="#中国剩余定理" class="headerlink" title="中国剩余定理"></a>中国剩余定理</h1><p>有一组膜方程, 要求求出最小的$x$</p>
-<script type="math/tex; mode=display">
-\begin{cases}x = a_1(mod\ \ m_1) \\ x = a_2(mod \ \ m_2)\\ x = a_3(mod \ \ m_3)\\ .......... \\ x = a_n (mod \ \ m_n)\end{cases}</script><h2 id="m-i-两两互质时"><a href="#m-i-两两互质时" class="headerlink" title="$m_i$两两互质时"></a>$m_i$两两互质时</h2><p>我们引入中国剩余定理</p>
-<p>定义$M = \prod m_i$, 相当于要求我们构造出一个$A = x (mod \ \ M)$</p>
-<p>定义$M_i = \frac {M}{m_i}$, $M_i^{-1}$为$M_i$在膜$M$意义下的逆元, 然后我们有下列等式:</p>
-<script type="math/tex; mode=display">
+        <p><img src="http://r.photo.store.qq.com/psb?/V12wIROa0MTsCi/.Ary9UmAWnXFM47jeunYAOmlk*Oq6T4VDh0AHQRqq8c!/r/dDQBAAAAAAAA"> <a id="more"></a></p>
+<h1 id="中国剩余定理">中国剩余定理</h1>
+<p>有一组膜方程, 要求求出最小的<span class="math inline">\(x\)</span> <span class="math display">\[
+\begin{cases}x = a_1(mod\ \ m_1) \\ x = a_2(mod \ \ m_2)\\ x = a_3(mod \ \ m_3)\\ .......... \\ x = a_n (mod \ \ m_n)\end{cases}
+\]</span></p>
+<h2 id="m_i两两互质时"><span class="math inline">\(m_i\)</span>两两互质时</h2>
+<p>我们引入中国剩余定理</p>
+<p>定义<span class="math inline">\(M = \prod m_i\)</span>, 相当于要求我们构造出一个<span class="math inline">\(A = x (mod \ \ M)\)</span></p>
+<p>定义<span class="math inline">\(M_i = \frac {M}{m_i}\)</span>, <span class="math inline">\(M_i^{-1}\)</span>为<span class="math inline">\(M_i\)</span>在膜<span class="math inline">\(M\)</span>意义下的逆元, 然后我们有下列等式: <span class="math display">\[
 a_i \cdot M_i \cdot M_i^{-1} = a_i(mod \ \ m_i)\\
-a_i \cdot M_i \cdot M_i^{-1} = 0(mod \ \ M_i)</script><p>我们可以构造出一个最小解$A = \sum a_i \cdot M_i \cdot M_i^{-1} (mod \ \ M)$</p>
-<p>$PS$ : 这里求逆元必须要用$Exgcd$, 因为不保证$m_i$为质数, 只保证$M_i$与$m_i$互质</p>
-<p>证明 : 不会, 待填坑……</p>
-<p>代码 : </p>
+a_i \cdot M_i \cdot M_i^{-1} = 0(mod \ \ M_i)
+\]</span> 我们可以构造出一个最小解<span class="math inline">\(A = \sum a_i \cdot M_i \cdot M_i^{-1} (mod \ \ M)\)</span></p>
+<p><span class="math inline">\(PS\)</span> : 这里求逆元必须要用<span class="math inline">\(Exgcd\)</span>, 因为不保证<span class="math inline">\(m_i\)</span>为质数, 只保证<span class="math inline">\(M_i\)</span>与<span class="math inline">\(m_i\)</span>互质</p>
+<p>证明 : 不会, 待填坑......</p>
+<p>代码 :</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> namesapce <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> LL;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">1e5</span> + <span class="number">5</span>;</span><br><span class="line"></span><br><span class="line">LL n, m[maxn], a[maxn];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> LL <span class="title">read</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">char</span> ch = getchar(); LL u = <span class="number">0</span>, f = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span>(!<span class="built_in">isdigit</span>(ch))&#123;<span class="keyword">if</span>(ch == <span class="string">'-'</span>)f = <span class="number">-1</span>; ch = getchar();&#125;</span><br><span class="line">	<span class="keyword">while</span>(<span class="built_in">isdigit</span>(ch))&#123;u = u * <span class="number">10</span> + ch - <span class="number">48</span>; ch = getchar();&#125; <span class="keyword">return</span> u * f;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> LL <span class="title">exgcd</span><span class="params">(LL a, LL b, LL &amp;x, LL &amp;y)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(b == <span class="number">0</span>)&#123;x = <span class="number">1</span>; y = <span class="number">0</span>; <span class="keyword">return</span> a;&#125;</span><br><span class="line">	LL x0 = <span class="number">0</span>, y0 = <span class="number">0</span>;</span><br><span class="line">	LL d = exgcd(b, a % b, y0, x0);</span><br><span class="line">	x = x0; y = y0 - ((a / b) * x0);</span><br><span class="line">	<span class="keyword">return</span> d;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> LL <span class="title">china</span><span class="params">(LL *a, LL *m, LL n)</span></span>&#123;</span><br><span class="line">	LL M = <span class="number">1</span>, ans = <span class="number">0</span>, tmp;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)M *= m[i];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</span><br><span class="line">		<span class="keyword">int</span> Mi = M / m[i], inv;</span><br><span class="line">		exgcd(Mi, m[i], inv, tmp);</span><br><span class="line">		ans = (ans + Mi * inv * a[i]) % M;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> (M + ans % M) % M;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	n = read();</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">		a[i] = read(), m[i] = read();</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; china(a, m, n);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="m-i-为任意数"><a href="#m-i-为任意数" class="headerlink" title="$m_i$为任意数"></a>$m_i$为任意数</h2><p>我们引入拓展中国剩余定理, 比如对于一组膜方程 : </p>
-<script type="math/tex; mode=display">
-\begin{cases} x = a_1 (mod \ \ m_1)\\ x = a_2(mod \ \ m_2)\end{cases}</script><p>我们将式子转换一下</p>
-<script type="math/tex; mode=display">
-x = a_1 + m_1 \cdot y_1, x = a_2 + m_2 \cdot y_2</script><script type="math/tex; mode=display">
-x = a_1 + m_1 \cdot y_1 = a_2 + m_2 \cdot y_2</script><script type="math/tex; mode=display">
-a_1 - a_2 = m_2 \cdot y_2 - m_1 \cdot y_1</script><p>然后我们设$d = gcd(m_1, m_2)$, 并使得$m_1 \cdot x + m_2 \cdot y = d$, 显然如果$d \not\mid (a_1 - a_2)$无解, 否则就是有解</p>
-<p>然后使得$y_1 = \frac {a_1 - a_2}{d} \cdot x, y_2 = \frac {a_1 - a_2}{d} \cdot y$ </p>
-<script type="math/tex; mode=display">
-A = a_1 + m_1 \cdot y_1</script><p>我们就得到了一个合法解, $x = A(mod \ \ lcm(m_1, m_2))$</p>
+<h2 id="m_i为任意数"><span class="math inline">\(m_i\)</span>为任意数</h2>
+<p>我们引入拓展中国剩余定理, 比如对于一组膜方程 : <span class="math display">\[
+\begin{cases} x = a_1 (mod \ \ m_1)\\ x = a_2(mod \ \ m_2)\end{cases}
+\]</span> 我们将式子转换一下 <span class="math display">\[
+x = a_1 + m_1 \cdot y_1, x = a_2 + m_2 \cdot y_2
+\]</span></p>
+<p><span class="math display">\[
+x = a_1 + m_1 \cdot y_1 = a_2 + m_2 \cdot y_2
+\]</span></p>
+<p><span class="math display">\[
+a_1 - a_2 = m_2 \cdot y_2 - m_1 \cdot y_1
+\]</span></p>
+<p>然后我们设<span class="math inline">\(d = gcd(m_1, m_2)\)</span>, 并使得<span class="math inline">\(m_1 \cdot x + m_2 \cdot y = d\)</span>, 显然如果<span class="math inline">\(d \not\mid (a_1 - a_2)\)</span>无解, 否则就是有解</p>
+<p>然后使得<span class="math inline">\(y_1 = \frac {a_1 - a_2}{d} \cdot x, y_2 = \frac {a_1 - a_2}{d} \cdot y\)</span> <span class="math display">\[
+A = a_1 + m_1 \cdot y_1
+\]</span> 我们就得到了一个合法解, <span class="math inline">\(x = A(mod \ \ lcm(m_1, m_2))\)</span></p>
 <p>如果膜方程有很多的话, 就依次合并就好了</p>
-<p>代码 : </p>
+<p>代码 :</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> LL;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">1e5</span> + <span class="number">5</span>;</span><br><span class="line"></span><br><span class="line">LL n, m[maxn], a[maxn];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> LL <span class="title">read</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">char</span> ch = getchar(); LL u = <span class="number">0</span>, f = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span>(!<span class="built_in">isdigit</span>(ch))&#123;<span class="keyword">if</span>(ch == <span class="string">'-'</span>)f = <span class="number">-1</span>; ch = getchar();&#125;</span><br><span class="line">	<span class="keyword">while</span>(<span class="built_in">isdigit</span>(ch))&#123;u = u * <span class="number">10</span> + ch - <span class="number">48</span>; ch = getchar();&#125; <span class="keyword">return</span> u * f;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> LL <span class="title">exgcd</span><span class="params">(LL a, LL b, LL &amp;x, LL &amp;y)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(b == <span class="number">0</span>)&#123;x = <span class="number">1</span>; y = <span class="number">0</span>; <span class="keyword">return</span> a;&#125;</span><br><span class="line">	LL x0 = <span class="number">0</span>, y0 = <span class="number">0</span>;</span><br><span class="line">	LL d = exgcd(b, a % b, y0, x0);</span><br><span class="line">	x = x0; y = y0 - ((a / b) * x0);</span><br><span class="line">	<span class="keyword">return</span> d;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> LL <span class="title">mul</span><span class="params">(LL x, LL y, LL mod)</span></span>&#123;</span><br><span class="line">	x %= mod; y %= mod;</span><br><span class="line">	<span class="keyword">return</span> (x * y - (LL)(((<span class="keyword">long</span> <span class="keyword">double</span>)x * y + <span class="number">0.5</span>) / mod) * mod) % mod;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> LL <span class="title">exchina</span><span class="params">(LL *a, LL *m, LL n)</span></span>&#123;</span><br><span class="line">	LL A = a[<span class="number">1</span>], M = m[<span class="number">1</span>], t, d, x, y;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; i++)&#123;</span><br><span class="line">		d = exgcd(M, m[i], x, y);</span><br><span class="line">		<span class="keyword">if</span>((a[i] - A) % d != <span class="number">0</span>)<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">		t = m[i] / d;</span><br><span class="line">		x = mul(x, (a[i] - A) / d, t);</span><br><span class="line">		<span class="comment">//x *= ((a[i] - A) / d);</span></span><br><span class="line">		<span class="comment">//x = (t + x % t) % t;</span></span><br><span class="line">		A = (mul(M, x, M * t) + A) % (M * t); M *= t; A %= M;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> (A % M + M) % M;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	n = read();</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">		m[i] = read(), a[i] = read();</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; (exchina(a, m, n));</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="例题讲解"><a href="#例题讲解" class="headerlink" title="例题讲解"></a>例题讲解</h1><h2 id="1-BZOJ5418屠龙勇士"><a href="#1-BZOJ5418屠龙勇士" class="headerlink" title="1.BZOJ5418屠龙勇士"></a><a href="https://www.lydsy.com/JudgeOnline/problem.php?id=5418" target="_blank" rel="noopener">1.BZOJ5418屠龙勇士</a></h2><p>题目大意 : 给你一组以下形式的膜方程, 并让你求出最小解</p>
-<script type="math/tex; mode=display">
-w_i \cdot x = a_i (mod \ \ p_i)</script><p>我们还是考虑转换一下式子 : </p>
-<script type="math/tex; mode=display">
-w_i \cdot x_i + p_i \cdot y_i = a_i</script><p>再考虑直接用$Exgcd$求出$w_i \cdot a + p_i \cdot b = gcd(w_i, p_i) = d$, 显然如果$d \not\mid a_i$无解, 否则</p>
-<script type="math/tex; mode=display">
-x = a + k \cdot \frac{p_i}{d}</script><p>这样我们将膜方程转化为了 : </p>
-<script type="math/tex; mode=display">
+<h1 id="例题讲解">例题讲解</h1>
+<h2 id="bzoj5418屠龙勇士"><a href="https://www.lydsy.com/JudgeOnline/problem.php?id=5418" target="_blank" rel="noopener">1.BZOJ5418屠龙勇士</a></h2>
+<p>题目大意 : 给你一组以下形式的膜方程, 并让你求出最小解 <span class="math display">\[
+w_i \cdot x = a_i (mod \ \ p_i)
+\]</span> 我们还是考虑转换一下式子 : <span class="math display">\[
+w_i \cdot x_i + p_i \cdot y_i = a_i
+\]</span> 再考虑直接用<span class="math inline">\(Exgcd\)</span>求出<span class="math inline">\(w_i \cdot a + p_i \cdot b = gcd(w_i, p_i) = d\)</span>, 显然如果<span class="math inline">\(d \not\mid a_i\)</span>无解, 否则 <span class="math display">\[
+x = a + k \cdot \frac{p_i}{d}
+\]</span> 这样我们将膜方程转化为了 : <span class="math display">\[
 \begin{cases} x = \frac{a_1}{gcd(w_1, p_1)} (mod \ \ \frac{p_1}{gcd(w_1, p_1)})\\
 x = \frac{a_2}{gcd(w_2, p_2)} (mod \ \ \frac{p_2}{gcd(w_2, p_2)})\\
 ..........\\
 x = \frac{a_n}{gcd(w_n, p_n)} (mod \ \ \frac{p_n}{gcd(w_n, p_n)})\\
-\end{cases}</script><p>这样我们就可以愉悦的套上$ExCRT$的模板了</p>
-<p>但是上面我们所讨论的都是基于$a_i \leq p_i$的, 但是如果不保证这个条件的话就会出一些问题, 因为有可能我们根本就没有把血量杀到小于等于零但是在膜$p_i$的意义下血量就是零了, 所以这个不是完全正确的, 但是我们又发现所有不满足$a_i \leq p_i$的测试点都满足$p_i =  1$, 所以对于这种情况答案就是 : </p>
-<script type="math/tex; mode=display">
-max\{\lceil \frac{a_i}{w_i} \rceil\}</script><p>最后关于选剑的问题我们直接用$multiset$维护一下就好了, 具体如下 : </p>
-<p>先在$multiset$里面$upper_bound$一下, 如果这个迭代器为$begin()$那么这个答案就是这个迭代器所代表的值, 否则就把这个迭代器减减一下, 就是答案了</p>
-<h1 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h1><p><del>水水水</del></p>
+\end{cases}
+\]</span> 这样我们就可以愉悦的套上<span class="math inline">\(ExCRT\)</span>的模板了</p>
+<p>但是上面我们所讨论的都是基于<span class="math inline">\(a_i \leq p_i\)</span>的, 但是如果不保证这个条件的话就会出一些问题, 因为有可能我们根本就没有把血量杀到小于等于零但是在膜<span class="math inline">\(p_i\)</span>的意义下血量就是零了, 所以这个不是完全正确的, 但是我们又发现所有不满足<span class="math inline">\(a_i \leq p_i\)</span>的测试点都满足<span class="math inline">\(p_i = 1\)</span>, 所以对于这种情况答案就是 : <span class="math display">\[
+max\{\lceil \frac{a_i}{w_i} \rceil\}
+\]</span> 最后关于选剑的问题我们直接用<span class="math inline">\(multiset\)</span>维护一下就好了, 具体如下 :</p>
+<p>先在<span class="math inline">\(multiset\)</span>里面<span class="math inline">\(upper\_bound\)</span>一下, 如果这个迭代器为<span class="math inline">\(begin()\)</span>那么这个答案就是这个迭代器所代表的值, 否则就把这个迭代器减减一下, 就是答案了</p>
+<h1 id="summary">Summary</h1>
+<p><del>水水水</del></p>
 <p><del>咕咕咕</del></p>
 
       
@@ -667,7 +679,7 @@ max\{\lceil \frac{a_i}{w_i} \rceil\}</script><p>最后关于选剑的问题我�
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#中国剩余定理"><span class="nav-number">1.</span> <span class="nav-text">中国剩余定理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#m-i-两两互质时"><span class="nav-number">1.1.</span> <span class="nav-text">$m_i$两两互质时</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#m-i-为任意数"><span class="nav-number">1.2.</span> <span class="nav-text">$m_i$为任意数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#例题讲解"><span class="nav-number">2.</span> <span class="nav-text">例题讲解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-BZOJ5418屠龙勇士"><span class="nav-number">2.1.</span> <span class="nav-text">1.BZOJ5418屠龙勇士</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Summary"><span class="nav-number">3.</span> <span class="nav-text">Summary</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#中国剩余定理"><span class="nav-number">1.</span> <span class="nav-text">中国剩余定理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#m_i两两互质时"><span class="nav-number">1.1.</span> <span class="nav-text">\(m_i\)两两互质时</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#m_i为任意数"><span class="nav-number">1.2.</span> <span class="nav-text">\(m_i\)为任意数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#例题讲解"><span class="nav-number">2.</span> <span class="nav-text">例题讲解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#bzoj5418屠龙勇士"><span class="nav-number">2.1.</span> <span class="nav-text">1.BZOJ5418屠龙勇士</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#summary"><span class="nav-number">3.</span> <span class="nav-text">Summary</span></a></li></ol></div>
             
 
           </div>
@@ -701,7 +713,7 @@ max\{\lceil \frac{a_i}{w_i} \rceil\}</script><p>最后关于选剑的问题我�
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">36.5k</span>
+    <span title="Site words total count">37.6k</span>
   
 </div>
 
@@ -1221,7 +1233,7 @@ max\{\lceil \frac{a_i}{w_i} \rceil\}</script><p>最后关于选剑的问题我�
         }
       });
     </script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
