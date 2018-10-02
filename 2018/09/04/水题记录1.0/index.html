@@ -497,10 +497,7 @@ new + 1 \le old + 0
 \binom{n + m - 2}{n - 1}
 \]</span> 其实就是, 我们一共走<span class="math inline">\(n + m - 2\)</span>步, 纵向走<span class="math inline">\(n-1\)</span>步, 问你有多少总方案, 然后就可以转化成上面那个东西了</p>
 <p>知道上面那个结论以后, 我们再来考虑有障碍物的情况, 如图 :</p>
-<div class="figure">
-<img src="http://wx4.sinaimg.cn/mw690/0060lm7Tly1fvds0m53huj30bl09674k.jpg">
-
-</div>
+<p><img src="http://wx4.sinaimg.cn/mw690/0060lm7Tly1fvds0m53huj30bl09674k.jpg"></p>
 <p>我们知道从左上角分别走到蓝色区域的第一排的每个格子的方案数, 我们也知道从右下角分别走到蓝色区域第二排的每个格子的方案数, 根据乘法原理答案很显然就是就是 : <span class="math display">\[
 \sum _{i = B + 1}^{i \le m} \binom {n - H + i - 2}{n - H - 1} \cdot \binom {H + m - i - 1}{H - 1} (mod \ \ 10^9 + 7)
 \]</span> 代码 :</p>

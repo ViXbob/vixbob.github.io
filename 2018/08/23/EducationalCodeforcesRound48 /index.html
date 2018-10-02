@@ -434,10 +434,7 @@
 <h2 id="c.vasya-and-the-mushrooms"><a href="http://codeforces.com/contest/1016/problem/C" target="_blank" rel="noopener">C.Vasya And The Mushrooms</a></h2>
 <p>题目大意：有两排蘑菇，每行有<span class="math inline">\(n\)</span>个，每个蘑菇都有一个生长速度<span class="math inline">\(a_i\)</span>, 一开始的初始时间是零，你在两个个子之间移动的速度是<span class="math inline">\(1m/s\)</span> 每个相邻的格子之间的距离是一，最后你得到每个蘑菇的权值是<span class="math inline">\(a_i\cdot t_i\)</span> ，<span class="math inline">\(t_i\)</span>是你猜到这个蘑菇的时间，问你如何采摘才能让总权值最大</p>
 <p>题解：这题然我们一次性拿完并且不能经过相同的蘑菇，那么很显然如果你在某一行上走的路径长度超过二的话那么你就必须得走到头然后从另一行绕回来，那么我们就可以枚举一下是从那一行的哪一列开始一直向前走的，此前我们必须得走蛇形的，例如：</p>
-<div class="figure">
-<img src="http://r.photo.store.qq.com/psb?/V12wIROa4RmSjE/rUFSkozPDhUPV*4kyF3fEwrJv6AJqUhl0Q5sqW.Q.XI!/r/dDYBAAAAAAAA">
-
-</div>
+<p><img src="http://r.photo.store.qq.com/psb?/V12wIROa4RmSjE/rUFSkozPDhUPV*4kyF3fEwrJv6AJqUhl0Q5sqW.Q.XI!/r/dDYBAAAAAAAA"></p>
 <p>所以我们枚举一下转折点就好了，关于统计答案我们处理一个蛇行走的第一行和第二行的前缀和(就是在蛇行走时的前缀和)分别为 <span class="math inline">\(s_0, s_1\)</span>，和一个前缀和分别为<span class="math inline">\(ss_0, ss_1\)</span>，和一个后缀和<span class="math inline">\(sss_0, sss_1\)</span>，还有一个这样的东西 <span class="math display">\[
 ssa_{i} = \sum_{j=1}^{j\leq i}i\cdot a_j
 \]</span> 和这样一个东西 <span class="math display">\[

@@ -424,16 +424,10 @@
         <p><img src="http://r.photo.store.qq.com/psb?/V12wIROa0MTsCi/ZayFJrhxuRv.oNtLHKJRQkdvQ2g0.gm6rjKZHOdZvjM!/r/dDQBAAAAAAAA"> <a id="more"></a></p>
 <h2 id="什么是仙人掌">1.什么是仙人掌</h2>
 <p>给你一张无向图，一条边最多只在一个简单环当中的图被称之为仙人掌，例如：</p>
-<div class="figure">
-<img src="https://www.lydsy.com/JudgeOnline/images/1023/1.jpg">
-
-</div>
+<p><img src="https://www.lydsy.com/JudgeOnline/images/1023/1.jpg"></p>
 <p><strong>(图片出自BZOJ1023)</strong></p>
 <p>又或者这样</p>
-<div class="figure">
-<img src="http://wx1.sinaimg.cn/mw690/0060lm7Tly1fv07s37l7mj30k00akq3l.jpg">
-
-</div>
+<p><img src="http://wx1.sinaimg.cn/mw690/0060lm7Tly1fv07s37l7mj30k00akq3l.jpg"></p>
 <p><strong>(图片源于网络)</strong></p>
 <h2 id="什么是圆方树">2.什么是圆方树</h2>
 <p>仙人掌<span class="math inline">\(G = (V, E)\)</span> 的圆方树 <span class="math inline">\(T = (V_T,E_T)\)</span> 为满足以下条件的无向图：</p>
@@ -456,10 +450,7 @@
 <p>我们直接从任意一个点开始进行<span class="math inline">\(Tarjan\)</span> 求点双联通分量 , 然后对于每一个点双联通分量建立一个方点 , 然后连边向这个点双联通分量里的每一个点连边, 最后处理没有连边的圆圆点对</p>
 <p><span class="math inline">\(PS\)</span> : 个人建议通过并查集维护一下连通性在判断是否需要将原图中的边加入进来 , 而且这样可以避免重边带来的一些奇奇怪怪的<span class="math inline">\(bug\)</span></p>
 <p>如图 :</p>
-<div class="figure">
-<img src="http://wx1.sinaimg.cn/mw690/0060lm7Tly1fv07u9zu73j30wx0bo752.jpg">
-
-</div>
+<p><img src="http://wx1.sinaimg.cn/mw690/0060lm7Tly1fv07u9zu73j30wx0bo752.jpg"></p>
 <p>虚边是原图上的边 , 实边是新建立的圆方树上的边 , 有一些虚边和实边重和的请况可以按照上述并查集的方法来维护</p>
 <h2 id="圆方树的性质">4.圆方树的性质</h2>
 <ul>
