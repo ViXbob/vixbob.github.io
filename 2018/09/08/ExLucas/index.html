@@ -381,7 +381,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  1,117
+                  1,040
                 </span>
               
 
@@ -397,7 +397,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  6
+                  5
                 </span>
               
             </div>
@@ -418,34 +418,31 @@
       
 
       
-        <p><img src="http://r.photo.store.qq.com/psb?/V12wIROa0MTsCi/fQdavSnNLoUa6Snba7jQtoUe5QEPe9jGRXdd0.A*Sv8!/r/dDYBAAAAAAAA"></p>
+        <p><img src="http://r.photo.store.qq.com/psb?/V12wIROa0MTsCi/fQdavSnNLoUa6Snba7jQtoUe5QEPe9jGRXdd0.A*Sv8!/r/dDYBAAAAAAAA" alt=""></p>
 <a id="more"></a>
-<h1 id="卢卡斯定理">卢卡斯定理</h1>
-<p>常用于求解<span class="math inline">\(\binom{n}{m} (mod \ \ P)\)</span> , 且<span class="math inline">\(n\)</span>, <span class="math inline">\(m\)</span>值域特别大, 而 <span class="math inline">\(P\)</span> 的值域比较小</p>
-<h2 id="p为素数"><span class="math inline">\(P\)</span>为素数</h2>
-<p>直接记定理就好了 : <span class="math display">\[
-\binom{n}{m} (mod \ \ P)= \binom{n / P}{m / P} \cdot \binom {n \% P}{m \% P} (mod\ \ P)
-\]</span> 然后我们预处理出<span class="math inline">\(1 \sim P\)</span>的阶乘和逆元, 那么求这个组合数的复杂度就是<span class="math inline">\(O(P + log_P^{n})\)</span></p>
-<p>代码 :</p>
+<h1 id="卢卡斯定理"><a href="#卢卡斯定理" class="headerlink" title="卢卡斯定理"></a>卢卡斯定理</h1><p>常用于求解$\binom{n}{m} (mod \ \ P)$ , 且$n$, $m$值域特别大, 而 $P$ 的值域比较小</p>
+<h2 id="P-为素数"><a href="#P-为素数" class="headerlink" title="$P$为素数"></a>$P$为素数</h2><p>直接记定理就好了 : </p>
+<script type="math/tex; mode=display">
+\binom{n}{m} (mod \ \ P)= \binom{n / P}{m / P} \cdot \binom {n \% P}{m \% P} (mod\ \ P)</script><p>然后我们预处理出$1 \sim P$的阶乘和逆元, 那么求这个组合数的复杂度就是$O(P + log_P^{n})$</p>
+<p>代码 : </p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">1e6</span> + <span class="number">5</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n, m, fac[maxn], P;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">read</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">char</span> ch = getchar(); <span class="keyword">int</span> u = <span class="number">0</span>, f = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span>(!<span class="built_in">isdigit</span>(ch))&#123;<span class="keyword">if</span>(ch == <span class="string">'-'</span>)f = <span class="number">-1</span>; ch = getchar();&#125;</span><br><span class="line">	<span class="keyword">while</span>(<span class="built_in">isdigit</span>(ch))&#123;u = u * <span class="number">10</span> + ch - <span class="number">48</span>; ch = getchar();&#125; <span class="keyword">return</span> u * f;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">ksm</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> k)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> cnt = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span>(k)&#123;</span><br><span class="line">		<span class="keyword">if</span>(k &amp; <span class="number">1</span>)cnt = <span class="number">1l</span>l * cnt * x % P;</span><br><span class="line">		x = <span class="number">1l</span>l * x * x % P; k &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">	&#125; <span class="keyword">return</span> cnt;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">C</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> m, <span class="keyword">int</span> P)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(n &lt; m)<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">return</span> (<span class="keyword">int</span>)(<span class="number">1l</span>l * fac[n] * ksm(fac[n - m], P - <span class="number">2</span>) % P * ksm(fac[m], P - <span class="number">2</span>) % P);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="title">Lucas</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> m, <span class="keyword">int</span> P)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(n == <span class="number">0</span> || m == <span class="number">0</span>)<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">return</span> (<span class="keyword">int</span>)(<span class="number">1l</span>l * Lucas(n / P, m / P, P) * C(n % P, m % P, P) % P);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	n = read(); m = read(); P = read();</span><br><span class="line">	fac[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= P; i++)</span><br><span class="line">		fac[i] = <span class="number">1l</span>l * fac[i - <span class="number">1</span>] * i % P;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; Lucas(n, m, P);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="p-不为素数"><span class="math inline">\(P\)</span> 不为素数</h2>
-<p>其实这个东西和卢卡斯定理并没有什么关系</p>
-<p>因为<span class="math inline">\(P\)</span>不为素数, 所以 : <span class="math display">\[
-P = \prod P_i^{a_i}
-\]</span> 我们考虑求出 <span class="math display">\[
-\binom {n}{m} (mod \ \ P_i^{a_i})
-\]</span> 然后直接用<span class="math inline">\(CRT\)</span>合并就是答案了</p>
-<p>那么现在问题转化为了如何快速求出<span class="math inline">\(\binom{n}{m}(mod\ \ P_i^{a_i})\)</span>了</p>
-<p>因为实在膜 <span class="math inline">\(P_i^{a_i}\)</span> 的意义下, 所以阶乘其实是有循环节的, 我们可以考虑直接暴力处理循环节和不完整的循环</p>
+<h2 id="P-不为素数"><a href="#P-不为素数" class="headerlink" title="$P$ 不为素数"></a>$P$ 不为素数</h2><p>其实这个东西和卢卡斯定理并没有什么关系</p>
+<p>因为$P$不为素数, 所以 : </p>
+<script type="math/tex; mode=display">
+P = \prod P_i^{a_i}</script><p>我们考虑求出</p>
+<script type="math/tex; mode=display">
+\binom {n}{m} (mod \ \ P_i^{a_i})</script><p>然后直接用$CRT$合并就是答案了</p>
+<p>那么现在问题转化为了如何快速求出$\binom{n}{m}(mod\ \ P_i^{a_i})$了</p>
+<p>因为实在膜 $P_i^{a_i}$ 的意义下, 所以阶乘其实是有循环节的, 我们可以考虑直接暴力处理循环节和不完整的循环</p>
 <p>难道这样就好了吗, 事实上并没有这么简单</p>
-<p>因为<span class="math inline">\(P_i^{a_i}\)</span>是<span class="math inline">\(P_i\)</span>的倍数, 所以很有可能再膜意义下就直接变为零了, 但是事实上并不是这样的, 我们观察组合数的公式 : <span class="math display">\[
-\binom {n}{m} = \frac{n!}{(n - m)!m!}
-\]</span> 所以分母和分子的<span class="math inline">\(P_i\)</span>是可已被约掉的, 所以我们不能直接取膜, 我们再考虑把是<span class="math inline">\(P_i\)</span>的倍数的数给单独提出来搞一下</p>
-<p>那么 <span class="math display">\[
-fac(n) = \big(fac(\lfloor \frac{n}{P_i^{a_i}} \rfloor) \cdot P_i^{\lfloor \frac{n}{P_i^{a_i}} \rfloor}\big) \cdot \big(\prod_{i = 1}^{P_i^{a_i}} i\big) \cdot \big(\prod_{i = 1}^{n \% P_i^{a_i}} i\big) (mod \ \ P_i^{a_i})
-\]</span> 我们发现这个是一个递归式, 那么直接递归就好了, 特别的如果<span class="math inline">\(n = 0\)</span>就返回<span class="math inline">\(1\)</span></p>
-<p>需要注意的是<span class="math inline">\(P_i\)</span>这个东西不能在递归的时候直接乘上, 我们考虑, 在递归完之后, 或者递归之前直接处理出来就好了</p>
-<p>代码 :</p>
+<p>因为$P_i^{a_i}$是$P_i$的倍数, 所以很有可能再膜意义下就直接变为零了, 但是事实上并不是这样的, 我们观察组合数的公式 : </p>
+<script type="math/tex; mode=display">
+\binom {n}{m} = \frac{n!}{(n - m)!m!}</script><p>所以分母和分子的$P_i$是可已被约掉的, 所以我们不能直接取膜, 我们再考虑把是$P_i$的倍数的数给单独提出来搞一下</p>
+<p>那么</p>
+<script type="math/tex; mode=display">
+fac(n) = \big(fac(\lfloor \frac{n}{P_i^{a_i}} \rfloor) \cdot P_i^{\lfloor \frac{n}{P_i^{a_i}} \rfloor}\big) \cdot \big(\prod_{i = 1}^{P_i^{a_i}} i\big) \cdot \big(\prod_{i = 1}^{n \% P_i^{a_i}} i\big) (mod \ \ P_i^{a_i})</script><p>我们发现这个是一个递归式, 那么直接递归就好了, 特别的如果$n = 0$就返回$1$</p>
+<p>需要注意的是$P_i$这个东西不能在递归的时候直接乘上, 我们考虑, 在递归完之后, 或者递归之前直接处理出来就好了</p>
+<p>代码 : </p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> LL;</span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line">LL n, m, P;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> LL <span class="title">read</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">char</span> ch = getchar(); LL u = <span class="number">0</span>, f = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span>(!<span class="built_in">isdigit</span>(ch))&#123;<span class="keyword">if</span>(ch == <span class="string">'-'</span>)f = <span class="number">-1</span>; ch = getchar();&#125;</span><br><span class="line">	<span class="keyword">while</span>(<span class="built_in">isdigit</span>(ch))&#123;u = u * <span class="number">10</span> + ch - <span class="number">48</span>; ch = getchar();&#125; <span class="keyword">return</span> u * f;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> LL <span class="title">ksm</span><span class="params">(LL x, LL k, LL P)</span></span>&#123;</span><br><span class="line">	LL cnt = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span>(k)&#123;</span><br><span class="line">		<span class="keyword">if</span>(k &amp; <span class="number">1</span>)cnt = cnt * x % P;</span><br><span class="line">		x = x * x % P; k &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">	&#125; <span class="keyword">return</span> cnt;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> LL <span class="title">Exgcd</span><span class="params">(LL a, LL b, LL &amp;x, LL &amp;y)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(b == <span class="number">0</span>)&#123;x = <span class="number">1</span>; y = <span class="number">0</span>; <span class="keyword">return</span> a;&#125;</span><br><span class="line">	LL x0 = <span class="number">0</span>, y0 = <span class="number">0</span>;</span><br><span class="line">	LL d = Exgcd(b, a % b, y0, x0);</span><br><span class="line">	x = x0; y = y0 - ((a / b) * x0);</span><br><span class="line">	<span class="keyword">return</span> d;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> LL <span class="title">fac</span><span class="params">(LL n, LL Pi, LL Pk)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(n == <span class="number">0</span>)<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	LL rnt = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= Pk; i++)</span><br><span class="line">		<span class="keyword">if</span>(i % Pi)rnt = rnt * i % Pk;</span><br><span class="line">	rnt = ksm(rnt, n / Pk, Pk);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n % Pk; i++)</span><br><span class="line">		<span class="keyword">if</span>(i % Pi)rnt = rnt * i % Pk;</span><br><span class="line">	<span class="keyword">return</span> rnt * fac(n / Pi, Pi, Pk) % Pk;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> LL <span class="title">inv</span><span class="params">(LL x, LL P)</span></span>&#123;</span><br><span class="line">	LL inv, tmp;</span><br><span class="line">	Exgcd(x, P, inv, tmp);</span><br><span class="line">	<span class="keyword">return</span> (inv + P) % P;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> LL <span class="title">ExLucas</span><span class="params">(LL n, LL m, LL Pi, LL Pk)</span></span>&#123;</span><br><span class="line">	LL C1 = fac(n, Pi, Pk), C2 = fac(n - m, Pi, Pk), C3 = fac(m, Pi, Pk);</span><br><span class="line">	LL tim = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">register</span> LL i = n; i; i /= Pi)tim += i / Pi;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">register</span> LL i = n - m; i; i /= Pi)tim -= i / Pi;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">register</span> LL i = m; i; i /= Pi)tim -= i / Pi;</span><br><span class="line">	<span class="keyword">return</span> C1 * inv(C2, Pk) % Pk * inv(C3, Pk) % Pk * ksm(Pi, tim, Pk) % Pk;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> LL <span class="title">China</span><span class="params">(LL n, LL m, LL P)</span></span>&#123;</span><br><span class="line">	LL A = <span class="number">0</span>, M = P, Pk = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">register</span> LL i = <span class="number">2</span>; i &lt;= P; i++)</span><br><span class="line">		<span class="keyword">if</span>(P % i == <span class="number">0</span>)&#123;</span><br><span class="line">			Pk = <span class="number">1</span>;</span><br><span class="line">			<span class="keyword">while</span>(P % i == <span class="number">0</span>)Pk *= i, P /= i;</span><br><span class="line">			A = (A + ExLucas(n, m, i, Pk) * inv(M / Pk, Pk) % M * (M / Pk) % M) % M;</span><br><span class="line">		&#125;</span><br><span class="line">	<span class="keyword">return</span> (A + M) % M;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	n = read(); m = read(); P = read();</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; China(n, m, P);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
@@ -651,7 +648,7 @@ fac(n) = \big(fac(\lfloor \frac{n}{P_i^{a_i}} \rfloor) \cdot P_i^{\lfloor \frac{
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#卢卡斯定理"><span class="nav-number">1.</span> <span class="nav-text">卢卡斯定理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#p为素数"><span class="nav-number">1.1.</span> <span class="nav-text">\(P\)为素数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#p-不为素数"><span class="nav-number">1.2.</span> <span class="nav-text">\(P\) 不为素数</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#卢卡斯定理"><span class="nav-number">1.</span> <span class="nav-text">卢卡斯定理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#P-为素数"><span class="nav-number">1.1.</span> <span class="nav-text">$P$为素数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P-不为素数"><span class="nav-number">1.2.</span> <span class="nav-text">$P$ 不为素数</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -685,7 +682,7 @@ fac(n) = \big(fac(\lfloor \frac{n}{P_i^{a_i}} \rfloor) \cdot P_i^{\lfloor \frac{
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">37.6k</span>
+    <span title="Site words total count">36.5k</span>
   
 </div>
 
@@ -1205,24 +1202,7 @@ fac(n) = \big(fac(\lfloor \frac{n}{P_i^{a_i}} \rfloor) \cdot P_i^{\lfloor \frac{
         }
       });
     </script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMM"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMM"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
