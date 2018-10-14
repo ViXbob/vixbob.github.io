@@ -8,9 +8,9 @@
         <category>模拟赛</category>
       </categories>
       <tags>
+        <tag>DP</tag>
         <tag>模拟</tag>
         <tag>SPFA</tag>
-        <tag>DP</tag>
       </tags>
   </entry>
   <entry>
@@ -44,8 +44,8 @@
         <category>CodeForces</category>
       </categories>
       <tags>
-        <tag>模拟</tag>
         <tag>DP</tag>
+        <tag>模拟</tag>
         <tag>Z-function</tag>
         <tag>最短路</tag>
       </tags>
@@ -72,11 +72,11 @@
       </categories>
       <tags>
         <tag>DP</tag>
+        <tag>组合数学</tag>
         <tag>CRT</tag>
         <tag>Exgcd</tag>
-        <tag>组合数学</tag>
-        <tag>计算几何</tag>
         <tag>倍增</tag>
+        <tag>计算几何</tag>
         <tag>最短路</tag>
         <tag>ExLucas</tag>
         <tag>Lucas</tag>
@@ -108,8 +108,8 @@
         <category>模拟赛</category>
       </categories>
       <tags>
-        <tag>DP</tag>
         <tag>二分</tag>
+        <tag>DP</tag>
         <tag>组合数学</tag>
         <tag>容斥原理</tag>
       </tags>
@@ -157,8 +157,8 @@
         <category>CodeForces</category>
       </categories>
       <tags>
-        <tag>模拟</tag>
         <tag>二分</tag>
+        <tag>模拟</tag>
         <tag>斐蜀定理</tag>
         <tag>dfs</tag>
       </tags>
@@ -172,10 +172,10 @@
         <category>游记</category>
       </categories>
       <tags>
-        <tag>模拟</tag>
         <tag>DP</tag>
-        <tag>状态压缩</tag>
+        <tag>模拟</tag>
         <tag>dfs</tag>
+        <tag>状态压缩</tag>
         <tag>并查集</tag>
         <tag>数论</tag>
       </tags>
