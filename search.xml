@@ -62,12 +62,12 @@
         <tag>组合数学</tag>
         <tag>CRT</tag>
         <tag>Exgcd</tag>
-        <tag>计算几何</tag>
+        <tag>倍增</tag>
         <tag>最短路</tag>
         <tag>ExLucas</tag>
+        <tag>计算几何</tag>
         <tag>Lucas</tag>
         <tag>费马小定理</tag>
-        <tag>倍增</tag>
         <tag>Floyd</tag>
         <tag>状压DP</tag>
         <tag>凸包</tag>
@@ -85,6 +85,19 @@
         <tag>CRT</tag>
         <tag>Exgcd</tag>
         <tag>ExCRT</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[NOIP模拟赛--红魔馆之旅]]></title>
+    <url>%2F2018%2F09%2F02%2F20181014%2F</url>
+    <content type="text"><![CDATA[NOIP模拟赛--红魔馆之旅 T1.门 题目大意 : 给定你一个长度为\(n\)的字符串, 如果\(n\)不是\(3\)的倍数就用\(\ \0\)补齐, 然后将所有的字符转成\(ASCII\)码后, 再转成八位的二进制, 如果不足八位就用\(0\)补齐高位, 最后将二进制按照六个一分组, 最后转成如下表所示的字符 : 题解 : 直接模拟就好了, 转成二进制, 然后按位分组, 把上图打个表输出就可以了 就是有一些细节注意一下就好了 代码 : 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172#include &lt;bits/stdc++.h&gt;using namespace std;typedef long long LL;const int maxn = 4e3 + 5;const char out[100]="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";int n, N, tot, len, res, o[maxn];char s[maxn], ex[maxn][5], ans[maxn][5];inline int read() &#123; char ch = getchar(); int u = 0, f = 1; while(!isdigit(ch)) &#123;if(ch == '-') f = -1; ch = getchar();&#125; while(isdigit(ch)) &#123;u = u * 10 + ch - 48; ch = getchar();&#125; return u * f;&#125;int main() &#123;#ifndef ONLINE_JUDGE freopen("door.in", "r", stdin); freopen("door.out", "w", stdout);#endif n = read(); //for(register int i = 1; i &lt;= n; i++) s[i] = getchar(); //printf("\n%s", s + 1); gets(s + 1); if(n % 3 == 1) res = 2; else if(n % 3 == 2) res = 1; N = n + res; for(register int i = 1; i &lt;= N; i += 3) &#123; tot++; for(register int j = 0; j &lt; 3; j++) ex[tot][j] = s[i + j]; &#125; for(register int i = 1; i &lt;= tot; i++) &#123; int cnt = 0, p = -1; for(register int j = 0; j &lt; 3; j++) cnt |= (ex[i][j] &lt;&lt; (2 - j) * 8); for(register int j = 23; j &gt;= 0; j--) &#123; if(j % 6 == 5) p++; ans[i][p] |= (((cnt &gt;&gt; j) &amp; 1) &lt;&lt; (j % 6)); &#125; for(register int j = 0; j &lt;= p; j++) o[++len] = ans[i][j]; &#125; for(register int i = 1; i &lt;= res; i++) o[len - i + 1] = 64; //len = len - 3 + n % 3; for(register int i = 1; i &lt;= len; i++) &#123; putchar(out[o[i]]); if(i % 76 == 0) putchar('\n'); &#125; if(len % 76 != 0) putchar('\n'); return 0;&#125;/*57AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA*/ T2.逃离 题目大意 : 给你一张无向带权图, 这张图上有\(n\)个节点, \(m\)条边, 还有一个起点\(S\), 一个终点\(T\), 除此之外还有\(k\)个蝙蝠, 集合为\(S\) 一开始二小姐在\(S\)点上 每条边有两个权值\(p_i,q_i\), 二小姐走边权\(q_i\), 蝙蝠走边权\(q_i\), 如果二小姐和某一只蝙蝠相遇了, 蝙蝠和二小姐就会合体, 等价于一只蝙蝠, 问你\(k\)只蝙蝠, 和一个二小姐走到终点\(T\)的边权的和的最小值为多少 题解 : 首先我们设, \[ rnt = \sum_{i \in S} dis_{i, T} \] \(dis_{i, T}\)表示每只蝙蝠到终点\(T\)的最短路 我们考虑枚举一个相遇点\(i\), 最终的答案就是 \[ ans = rnt + min\{ min\{dis_{j,i}-dis_{j,T} | j \in S\} + dis_{S,i} + dis_{T, i}\} \] 关键点在于如何求出这个 \[ min\{dis_{j,i}-dis_{j,T} | j \in S\} \] 难道要求出每个蝙蝠到每个点的最短路, 这样很显然是\(k \cdot nlogn\)的, 这样只能那\(70pts\)那一档分 其实, 如何优化我已经写出来了, 我们发现这个最短路的差值都和\(j\) 有关, 我们不妨一开始直接把所有的蝙蝠所在的点直接丢到队列里去, 然后把这个点的距离初始值设为\(-dis_{j,T}\), 然后直接跑一遍\(SPFA\)就可以求出每个点的这个差值数组了 最后枚举一下这个\(i\)点, 更新一下答案就好了 代码 : 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586#include &lt;bits/stdc++.h&gt;using namespace std;typedef long long LL;const int maxn = 2e4 + 5;const int maxm = 2e5 + 5;const int inf = 0x3f3f3f3f;int n, m, k, S, T, bi[maxn], pos[maxn];queue&lt;int&gt; st;LL ans = 1ll &lt;&lt; 60, rnt = 0;struct Graph &#123; int cnt, head[maxn], dis[maxn], vis[maxn]; queue&lt;int&gt; q; struct node &#123;int to, nt, w;&#125; e[maxm &lt;&lt; 1]; inline void ini(int x, int y, int w) &#123;e[++cnt] = (node) &#123;y, head[x], w&#125;; head[x] = cnt;&#125; inline void add(int x, int y, int w) &#123;ini(x, y, w); ini(y, x, w);&#125; inline void SPFA() &#123; memset(vis, 0, sizeof(vis)); while(!q.empty()) &#123; int now = q.front(); q.pop(); vis[now] = 0; for(register int i = head[now]; i; i = e[i].nt) &#123; int v = e[i].to; if(dis[v] &gt; dis[now] + e[i].w) &#123; dis[v] = dis[now] + e[i].w; if(!vis[v]) q.push(v), vis[v] = 1; &#125; &#125; &#125; &#125;&#125; G1, G2, G3;inline int read() &#123; char ch = getchar(); int u = 0, f = 1; while(!isdigit(ch)) &#123;if(ch == '-') f = -1; ch = getchar();&#125; while(isdigit(ch)) &#123;u = u * 10 + ch - 48; ch = getchar();&#125; return u * f;&#125;int main() &#123;#ifndef ONLINE_JUDGE freopen("escape.in", "r", stdin); freopen("escape.out", "w", stdout);#endif n = read(); m = read(); k = read(); S = read(); T = read(); for(register int i = 1; i &lt;= k; i++) pos[read()]++; for(register int i = 1; i &lt;= m; i++) &#123; int x = read(), y = read(), w1 = read(), w2 = read(); G1.add(x, y, w1); G2.add(x, y, w1); G3.add(x, y, w2); &#125; //G1.SPFA(st); G2.q.push(T); memset(G2.dis, 0x3f, sizeof(G2.dis)); G2.dis[T] = 0; G2.SPFA(); G3.q.push(S); memset(G3.dis, 0x3f, sizeof(G3.dis)); G3.dis[S] = 0; G3.SPFA(); for(register int i = 1; i &lt;= n; i++) &#123; if(pos[i]) &#123; rnt += 1ll * pos[i] * G2.dis[i]; G1.dis[i] = -G2.dis[i]; G1.q.push(i); &#125; else G1.dis[i] = inf; &#125; G1.SPFA(); for(register int i = 1; i &lt;= n; i++) ans = min(ans, 1ll * G1.dis[i] + 1ll * G2.dis[i] + 1ll * G3.dis[i]); cout &lt;&lt; ans + rnt; return 0;&#125; T3.擦弹 题目大意 : 有\(n\)个格子, 和四个二小姐的分身, 一开始每个分身都在\(1\)号格子, 每一个时刻\(i\)二小姐可以将任意一个分身向前移动一步, 对于第\(i\)个时刻的第\(j\)个格子, 每个分身会受到的伤害为\(G_{i,j}\), 对于这个时刻移动的分身可以得到\(G_{i,j-1}\)的分数, 要求求出在所有分身受到的总伤害最小的情况下, 最多可以得到多少分, 输出最小伤害和最大得分 题解 : 这题很显然是一个\(dp\), 而且这个\(dp\)也非常好想到, 我们先不管第二问, 先考虑第一问 我们设\(f[i][j][k][v]\), 为第\(1\)个分身走了\(i\)步, 第二个分身走了\(j\)步, 第三个分身走了\(k\)步, 第四个分身走了\(v\)步的所受到的最小伤害值 因为知道了每个分身走的步数就相当于知道了当前的时刻是多少, 所以当前时刻的这一维可以直接扔掉不管 转移很显然有 : 设当前时刻\(tim = i + j + k + v\), 四个分身受到的总伤害为 \[ Q = G[tim][i + 1] + G[tim][j + 1] + G[tim][k + 1] + G[tim][v + 1] \] \[ f[i][j][k][v] = min\begin{cases} f[i - 1][j][k][v] + Q \ \ \ \ if \ \ \ \ i &gt; 0\\ f[i][j - 1][k][v] + Q \ \ \ \ if \ \ \ \ j &gt; 0\\ f[i][j][k - 1][v] + Q \ \ \ \ if \ \ \ \ k &gt; 0\\ f[i][j][k][v - 1] + Q \ \ \ \ if \ \ \ \ v &gt; 0\end{cases} \] 这样我们就很简单的得到了第一问的答案, 既然第一问都已经求出来了, 第二问很显然也不是问题 我们设\(g[i][j][k][v]\)为第\(1\)个分身走了\(i\)步, 第二个分身走了\(j\)步, 第三个分身走了\(k\)步, 第四个分身走了\(v\)步的所得到的最大分数 我们直接在转移\(f\)的时候考虑, 如果从上个状态转移过来的\(f\)值小于当前值, 那就直接把上个状态的\(g\)赋过来并加上当前时刻的得分, 否则如果\(f\)值相同, 那么直接取个\(max\)就好了 问题被完美的解决了 代码 : 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980#include &lt;bits/stdc++.h&gt;using namespace std;typedef long long LL;const int maxn = 1e2 + 5;const int maxm = 4e2 + 5;int n, G[maxm][maxm], f[2][maxn][maxn][maxn], g[2][maxn][maxn][maxn];inline int read() &#123; char ch = getchar(); int u = 0, f = 1; while(!isdigit(ch)) &#123;if(ch == '-') f = -1; ch = getchar();&#125; while(isdigit(ch)) &#123;u = u * 10 + ch - 48; ch = getchar();&#125; return u * f;&#125;int main() &#123;#ifndef ONLINE_JUDGE freopen("graze.in", "r", stdin); freopen("graze.out", "w", stdout);#endif n = read(); for(register int i = 1; i &lt;= 4 * (n - 1); i++) for(register int j = 1; j &lt;= n; j++) G[i][j] = read(); memset(f, 0x3f, sizeof(f)); //f[0][0][0][0] = 0; for(register int i = 0; i &lt; n; i++) &#123; int t = i &amp; 1, t0 = t ^ 1; memset(f[t], 0x3f, sizeof(f[t])); memset(g[t], 0, sizeof(g[t])); if(i == 0) f[0][0][0][0] = 0; for(register int j = 0; j &lt; n; j++) for(register int k = 0; k &lt; n; k++) for(register int v = 0; v &lt; n; v++) &#123; if(!i &amp;&amp; !j &amp;&amp; !k &amp;&amp; !v) continue; int tim = i + j + k + v; int z = G[tim][i + 1] + G[tim][j + 1] + G[tim][k + 1] + G[tim][v + 1]; if(i) &#123; if(f[t0][j][k][v] + z &lt; f[t][j][k][v]) &#123; f[t][j][k][v] = f[t0][j][k][v] + z; g[t][j][k][v] = g[t0][j][k][v] + G[tim][i]; &#125; else if(f[t0][j][k][v] + z == f[t][j][k][v]) g[t][j][k][v] = max(g[t][j][k][v], g[t0][j][k][v] + G[tim][i]); &#125; if(j) &#123; if(f[t][j - 1][k][v] + z &lt; f[t][j][k][v]) &#123; f[t][j][k][v] = f[t][j - 1][k][v] + z; g[t][j][k][v] = g[t][j - 1][k][v] + G[tim][j]; &#125; else if(f[t][j - 1][k][v] + z == f[t][j][k][v]) g[t][j][k][v] = max(g[t][j][k][v], g[t][j - 1][k][v] + G[tim][j]); &#125; if(k) &#123; if(f[t][j][k - 1][v] + z &lt; f[t][j][k][v]) &#123; f[t][j][k][v] = f[t][j][k - 1][v] + z; g[t][j][k][v] = g[t][j][k - 1][v] + G[tim][k]; &#125; else if(f[t][j][k - 1][v] + z == f[t][j][k][v]) g[t][j][k][v] = max(g[t][j][k][v], g[t][j][k - 1][v] + G[tim][k]); &#125; if(v) &#123; if(f[t][j][k][v - 1] + z &lt; f[t][j][k][v]) &#123; f[t][j][k][v] = f[t][j][k][v - 1] + z; g[t][j][k][v] = g[t][j][k][v - 1] + G[tim][v]; &#125; else if(f[t][j][k][v - 1] + z == f[t][j][k][v]) g[t][j][k][v] = max(g[t][j][k][v], g[t][j][k][v - 1] + G[tim][v]); &#125; &#125; &#125; cout &lt;&lt; f[(n - 1) &amp; 1][n - 1][n - 1][n - 1] &lt;&lt; " " &lt;&lt; g[(n - 1) &amp; 1][n - 1][n - 1][n - 1]; return 0;&#125; Summary 有些题目不仅仅是要思考, 有时候把式子写在纸上可以更快的看出做法 打\(dp\)转移方程的时候, 不要为了偷懒就直接把类似的转移式子\(copy\)下来, 不然有些东西很可能会忘记修改, 重新打一遍更加保险 打模拟题的时候细心一点, 尽量一遍打对, 这样可以节约大量时间]]></content>
+      <categories>
+        <category>模拟赛</category>
+      </categories>
+      <tags>
+        <tag>DP</tag>
+        <tag>模拟</tag>
+        <tag>SPFA</tag>
       </tags>
   </entry>
   <entry>
@@ -110,12 +123,12 @@
       </categories>
       <tags>
         <tag>DP</tag>
-        <tag>倍增</tag>
         <tag>仙人掌</tag>
         <tag>图论</tag>
         <tag>圆方树</tag>
         <tag>单调队列</tag>
         <tag>树链剖分</tag>
+        <tag>倍增</tag>
         <tag>Tarjan</tag>
       </tags>
   </entry>
@@ -128,12 +141,12 @@
       </categories>
       <tags>
         <tag>模拟</tag>
+        <tag>状态压缩</tag>
         <tag>Hash</tag>
         <tag>KMP</tag>
         <tag>Greedy</tag>
         <tag>计算几何</tag>
         <tag>Pollard-rho</tag>
-        <tag>状态压缩</tag>
       </tags>
   </entry>
   <entry>
